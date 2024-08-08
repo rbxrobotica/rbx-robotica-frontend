@@ -20,9 +20,7 @@ const BackgroundPattern: React.FC<BackgroundPatternProps> = ({
   left,
 }) => (
   <div
-    className={`z-[-1] flex absolute ${position} ${bottom || ""} ${
-      right || ""
-    } ${left || ""} place-items-center`}
+    className={`z-[-1] flex absolute ${position} ${bottom || ""} ${right || ""} ${left || ""} place-items-center`}
   >
     <div className="absolute h-[300px] w-full -translate-x-1/2 rounded-full bg-gradient-radial from-white to-transparent blur-2xl dark:bg-gradient-to-br dark:from-transparent dark:via-[#00FFFF] dark:opacity-10 sm:w-[480px] lg:h-[360px]" />
     <div className="absolute -z-20 h-[180px] w-full translate-x-1/3 bg-gradient-conic from-sky-200 via-blue-200 blur-2xl dark:from-sky-900 dark:via-[#0e7272] dark:opacity-40 sm:w-[240px]" />
@@ -33,6 +31,7 @@ interface ProjectCardProps {
   imgSrc?: string;
   logoSrc?: string;
   title: string;
+  description: string; // Add description here
 }
 
 // Componente ProjectCard
@@ -40,6 +39,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   imgSrc,
   logoSrc,
   title,
+  description, // Add description here
 }) => (
   <div className="h-auto bg-gray-400 p-5 space-y-5 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
     {logoSrc && (
@@ -57,26 +57,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
     )}
     {imgSrc && (
-      <Image
-        src={imgSrc}
-        height={500}
-        className="rounded-md drop-shadow-2xl"
-        width={500}
-        priority
-        alt={`Screenshot of ${title}`}
-        quality={100}
-      />
+      <>
+        <Image
+          src={imgSrc}
+          height={500}
+          className="rounded-md drop-shadow-2xl"
+          width={500}
+          priority
+          alt={`Screenshot of ${title}`}
+          quality={100}
+        />
+        <div className="flex justify-between items-center mt-4">
+          <SheetPainel description={description} /> {/* Pass description here */}
+          <Button variant="link">
+            <SquareArrowOutUpRight className="mr-2 h-4 w-4" /> Visitar site
+          </Button>
+        </div>
+      </>
     )}
-     <div className="flex justify-between items-center">
-      <SheetPainel />
-      <Button variant="link">
-        {" "}
-        <SquareArrowOutUpRight className="mr-2 h-4 w-4" /> Visitar site
-      </Button>
-    </div>
-    <div className="flex justify-between items-center">
-    
-    </div>
   </div>
 );
 
@@ -86,10 +84,8 @@ const projects = [
     logoSrc:
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
+    description: "Description of Cromo Financiamentos"
   },
-  { title: "Nossos projetos" },
-  { title: "Nossos projetos" },
-  { title: "Nossos projetos" },
 ];
 
 const Home: React.FC = () => {
@@ -111,6 +107,7 @@ const Home: React.FC = () => {
               imgSrc={project.imgSrc}
               logoSrc={project.logoSrc}
               title={project.title}
+              description={project.description} // Ensure description is passed
             />
           ))}
         </div>

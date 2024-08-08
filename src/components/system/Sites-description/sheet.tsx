@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Sheet,
   SheetClose,
@@ -10,19 +10,23 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 
-export function SheetPainel() {
+interface SheetPainelProps {
+  description: string; // Define description prop
+}
+
+export function SheetPainel({ description }: SheetPainelProps) { // Destructure description from props
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button className="">Ver Detalhes</Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="h-4/5" side="bottom">
         <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
+          <SheetTitle>Project Details</SheetTitle>
           <SheetDescription>
-            {/* Make changes to your profile here. Click save when you're done. */}
+            {description}
           </SheetDescription>
         </SheetHeader>
         <div className="grid gap-4 py-4">
@@ -46,5 +50,5 @@ export function SheetPainel() {
         </SheetFooter>
       </SheetContent>
     </Sheet>
-  )
+  );
 }
