@@ -36,7 +36,7 @@ const BackgroundPattern: React.FC<BackgroundPatternProps> = ({
 );
 
 interface ProjectCardProps {
-  imgSrc?: string;
+  imgSrc?: string[];
   logoSrc?: string;
   title: string;
   description: string; // Add description here
@@ -71,7 +71,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     {imgSrc && (
       <>
         <Image
-          src={imgSrc}
+          src={imgSrc[0]}
           height={500}
           className="rounded-md drop-shadow-2xl"
           width={500}
@@ -84,16 +84,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
          rounded-lg p-2 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 text-sm overflow-auto"
         >
           <ul className="list-disc ml-6 leading-loose">
-            <li>
-              Formulário de financiamento
-            </li>
-            <li>
-              Mensageria via e-mail
-            </li>
+            <li>Formulário de financiamento</li>
+            <li>Mensageria via e-mail</li>
           </ul>
         </div>
         <div className="flex justify-between items-center mt-4">
-          <SheetPainel description={description} />{" "}
+          <SheetPainel
+            imgSrc={imgSrc}
+            logoSrc={logoSrc}
+            title={title}
+            description={description}
+          />{" "}
           {/* Pass description here */}
           <Button variant="link" onClick={handleClick(link)}>
             <SquareArrowOutUpRight className="mr-2 h-4 w-4 text-foreground dark:text-primary" />{" "}
@@ -109,7 +110,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
 const projects = [
   {
-    imgSrc: "/cromo-financiamento-tela.png",
+    imgSrc: [
+      "/cromo/cromo-financiamento-tela-1.png",
+      "/cromo/cromo-financiamento-tela-2.png",
+      "/cromo/cromo-financiamento-tela-3.png",
+      "/cromo/cromo-financiamento-tela-4.png",
+    ],
     logoSrc:
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
@@ -117,7 +123,12 @@ const projects = [
     link: "https://www.cromofinanciamentos.com.br",
   },
   {
-    imgSrc: "/cromo-financiamento-tela.png",
+    imgSrc: [
+      "/cromo/cromo-financiamento-tela-1.png",
+      "/cromo/cromo-financiamento-tela-2.png",
+      "/cromo/cromo-financiamento-tela-3.png",
+      "/cromo/cromo-financiamento-tela-4.png",
+    ],
     logoSrc:
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
@@ -125,7 +136,12 @@ const projects = [
     link: "https://www.cromofinanciamentos.com.br",
   },
   {
-    imgSrc: "/cromo-financiamento-tela.png",
+    imgSrc: [
+      "/cromo/cromo-financiamento-tela-1.png",
+      "/cromo/cromo-financiamento-tela-2.png",
+      "/cromo/cromo-financiamento-tela-3.png",
+      "/cromo/cromo-financiamento-tela-4.png",
+    ],
     logoSrc:
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
@@ -133,7 +149,12 @@ const projects = [
     link: "https://www.cromofinanciamentos.com.br",
   },
   {
-    imgSrc: "/cromo-financiamento-tela.png",
+    imgSrc: [
+      "/cromo/cromo-financiamento-tela-1.png",
+      "/cromo/cromo-financiamento-tela-2.png",
+      "/cromo/cromo-financiamento-tela-3.png",
+      "/cromo/cromo-financiamento-tela-4.png",
+    ],
     logoSrc:
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
@@ -141,7 +162,12 @@ const projects = [
     link: "https://www.cromofinanciamentos.com.br",
   },
   {
-    imgSrc: "/cromo-financiamento-tela.png",
+    imgSrc: [
+      "/cromo/cromo-financiamento-tela-1.png",
+      "/cromo/cromo-financiamento-tela-2.png",
+      "/cromo/cromo-financiamento-tela-3.png",
+      "/cromo/cromo-financiamento-tela-4.png",
+    ],
     logoSrc:
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
@@ -149,7 +175,12 @@ const projects = [
     link: "https://www.cromofinanciamentos.com.br",
   },
   {
-    imgSrc: "/cromo-financiamento-tela.png",
+    imgSrc: [
+      "/cromo/cromo-financiamento-tela-1.png",
+      "/cromo/cromo-financiamento-tela-2.png",
+      "/cromo/cromo-financiamento-tela-3.png",
+      "/cromo/cromo-financiamento-tela-4.png",
+    ],
     logoSrc:
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
@@ -157,7 +188,12 @@ const projects = [
     link: "https://www.cromofinanciamentos.com.br",
   },
   {
-    imgSrc: "/cromo-financiamento-tela.png",
+    imgSrc: [
+      "/cromo/cromo-financiamento-tela-1.png",
+      "/cromo/cromo-financiamento-tela-2.png",
+      "/cromo/cromo-financiamento-tela-3.png",
+      "/cromo/cromo-financiamento-tela-4.png",
+    ],
     logoSrc:
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
@@ -165,7 +201,12 @@ const projects = [
     link: "https://www.cromofinanciamentos.com.br",
   },
   {
-    imgSrc: "/cromo-financiamento-tela.png",
+    imgSrc: [
+      "/cromo/cromo-financiamento-tela-1.png",
+      "/cromo/cromo-financiamento-tela-2.png",
+      "/cromo/cromo-financiamento-tela-3.png",
+      "/cromo/cromo-financiamento-tela-4.png",
+    ],
     logoSrc:
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
