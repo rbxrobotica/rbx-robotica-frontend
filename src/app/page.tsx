@@ -51,7 +51,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   logoSrc,
   title,
   description, // Add description here
-  link
+  link,
 }) => (
   <div className="h-auto bg-gray-400 p-5 space-y-5 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
     {logoSrc && (
@@ -79,11 +79,27 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           alt={`Screenshot of ${title}`}
           quality={100}
         />
+        <div
+          className="bg-gray-400 h-28
+         rounded-lg p-2 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 text-sm overflow-auto"
+        >
+          <ul className="list-disc ml-6 leading-loose">
+            <li>
+              Formulário de financiamento
+            </li>
+            <li>
+              Mensageria via e-mail
+            </li>
+          </ul>
+        </div>
         <div className="flex justify-between items-center mt-4">
           <SheetPainel description={description} />{" "}
           {/* Pass description here */}
           <Button variant="link" onClick={handleClick(link)}>
-            <SquareArrowOutUpRight className="mr-2 h-4 w-4 text-foreground dark:text-primary" /> <p className="tracking-wide text-foreground dark:text-primary">Visitar site</p>
+            <SquareArrowOutUpRight className="mr-2 h-4 w-4 text-foreground dark:text-primary" />{" "}
+            <p className="tracking-wide text-foreground dark:text-primary">
+              Visitar site
+            </p>
           </Button>
         </div>
       </>
@@ -98,7 +114,7 @@ const projects = [
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
     description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br"
+    link: "https://www.cromofinanciamentos.com.br",
   },
   {
     imgSrc: "/cromo-financiamento-tela.png",
@@ -106,7 +122,7 @@ const projects = [
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
     description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br"
+    link: "https://www.cromofinanciamentos.com.br",
   },
   {
     imgSrc: "/cromo-financiamento-tela.png",
@@ -114,7 +130,7 @@ const projects = [
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
     description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br"
+    link: "https://www.cromofinanciamentos.com.br",
   },
   {
     imgSrc: "/cromo-financiamento-tela.png",
@@ -122,7 +138,7 @@ const projects = [
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
     description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br"
+    link: "https://www.cromofinanciamentos.com.br",
   },
   {
     imgSrc: "/cromo-financiamento-tela.png",
@@ -130,7 +146,7 @@ const projects = [
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
     description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br"
+    link: "https://www.cromofinanciamentos.com.br",
   },
   {
     imgSrc: "/cromo-financiamento-tela.png",
@@ -138,7 +154,7 @@ const projects = [
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
     description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br"
+    link: "https://www.cromofinanciamentos.com.br",
   },
   {
     imgSrc: "/cromo-financiamento-tela.png",
@@ -146,7 +162,7 @@ const projects = [
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
     description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br"
+    link: "https://www.cromofinanciamentos.com.br",
   },
   {
     imgSrc: "/cromo-financiamento-tela.png",
@@ -154,7 +170,7 @@ const projects = [
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
     description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br"
+    link: "https://www.cromofinanciamentos.com.br",
   },
 ];
 
