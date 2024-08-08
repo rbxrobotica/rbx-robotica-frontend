@@ -8,6 +8,16 @@
   transform: rotate(180deg); /* Ajusta a rotação para a direção vertical */
 }
 
+::-webkit-scrollbar-track {
+  display: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+ display: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -16,7 +26,7 @@
     --card-foreground: 20 14.3% 4.1%;
     --popover: 0 0% 100%;
     --popover-foreground: 20 14.3% 4.1%;
-    --primary: 180, 100%, 50%;
+    --primary: 180, 100%, 36%;
     --primary-foreground: 26 83.3% 14.1%;
     --secondary: 60 4.8% 95.9%;
     --secondary-foreground: 24 9.8% 10%;

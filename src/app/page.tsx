@@ -83,7 +83,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <SheetPainel description={description} />{" "}
           {/* Pass description here */}
           <Button variant="link" onClick={handleClick(link)}>
-            <SquareArrowOutUpRight className="mr-2 h-4 w-4" /> Visitar site
+            <SquareArrowOutUpRight className="mr-2 h-4 w-4 text-foreground dark:text-primary" /> <p className="tracking-wide text-foreground dark:text-primary">Visitar site</p>
           </Button>
         </div>
       </>
@@ -160,10 +160,10 @@ const projects = [
 
 const Home: React.FC = () => {
   return (
-    <div className="w-screen flex">
-      <div className="flex flex-col ml-8 justify-center items-center space-y-4">
-        <span className="w-0.5 h-1/6 bg-foreground"></span>
-        <div className="space-y-3">
+    <div className="max-w-screen flex">
+      <div className="flex flex-col ml-8 mr-2 justify-center items-center space-y-4">
+        <span className="w-0.5 h-1/6 mb-52 fixed bg-foreground"></span>
+        <div className="space-y-3 fixed">
           <InstagramLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
           <LinkedInLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
           <GitHubLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />

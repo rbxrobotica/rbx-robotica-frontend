@@ -20,7 +20,7 @@ export function SheetPainel({ description }: SheetPainelProps) { // Destructure 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="">Ver Detalhes</Button>
+        <Button className="text-background font-semibold hover:text-primary">Ver Detalhes</Button>
       </SheetTrigger>
       <SheetContent className="h-4/5" side="bottom">
         <SheetHeader>
