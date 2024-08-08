@@ -75,11 +75,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </Button>
     </div>
     <div className="flex justify-between items-center">
-      <SheetPainel />
-      <Button variant="link">
-        {" "}
-        <SquareArrowOutUpRight className="mr-2 h-4 w-4" /> Visitar site
-      </Button>
+    
     </div>
   </div>
 );
