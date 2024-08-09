@@ -9,6 +9,7 @@ import {
 } from "@radix-ui/react-icons";
 import { SquareArrowOutUpRight } from "lucide-react";
 import Image from "next/image";
+import { Suspense } from "react";
 
 // Definição das props para BackgroundPattern
 interface BackgroundPatternProps {
@@ -53,7 +54,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description, // Add description here
   link,
 }) => (
-  <div className="h-auto bg-gray-400 p-5 space-y-5 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
+  <div className="h-auto bg-gray-400 p-5 space-y-5 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
     {logoSrc && (
       <div className="flex justify-center items-center space-x-3">
         <Image
@@ -217,48 +218,52 @@ const projects = [
 
 const Home: React.FC = () => {
   return (
-    <div className="max-w-screen flex">
-      <div className="flex flex-col ml-8 mr-2 justify-center items-center space-y-4">
-        <span className="w-0.5 h-1/6 mb-52 fixed bg-foreground"></span>
-        <div className="space-y-3 fixed">
-          <InstagramLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
-          <LinkedInLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
-          <GitHubLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
+    <Suspense fallback={<p>Loading feed...</p>}>
+      <div className="max-w-screen flex">
+        <div className="flex flex-col ml-8 mr-2 justify-center items-center space-y-4">
+          <span className="w-0.5 h-1/6 mb-52 fixed bg-foreground"></span>
+          <div className="space-y-3 fixed">
+            <InstagramLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
+            <LinkedInLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
+            <GitHubLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
+          </div>
+        </div>
+        <div>
+          <NavigationMenuBar />
+          <BackgroundPattern position="top-40" left="left-40" />
+          <BackgroundPattern position="bottom-48" right="right-80" />
+          <main className="container mt-16">
+            <div className="space-y-3">
+              <p className="text-3xl font-bold tracking-wide">
+                Nossos projetos
+              </p>
+              <p className="tracking-wide">
+                Descubra uma seleção de sites que desenvolvemos. Cada projeto é
+                um exemplo do nosso compromisso com a inovação e a excelência em
+                design e funcionalidade. Saiba como transformamos conceitos em
+                experiências digitais personalizadas e impactantes para nossos
+                clientes.
+              </p>
+            </div>
+            <div className="grid grid-cols-4 gap-4 mt-12">
+              {projects.map((project, index): any => (
+                <ProjectCard
+                  key={index}
+                  imgSrc={project.imgSrc}
+                  logoSrc={project.logoSrc}
+                  title={project.title}
+                  description={project.description} // Ensure description is passed
+                  link={project.link}
+                />
+              ))}
+            </div>
+          </main>
+        </div>
+        <div className="flex flex-col mr-8 justify-center items-center space-y-4">
+          <p className="vertical-text text-xl tracking-[.9rem]">Projetos</p>
         </div>
       </div>
-      <div>
-        <NavigationMenuBar />
-        <BackgroundPattern position="top-40" left="left-40" />
-        <BackgroundPattern position="bottom-48" right="right-80" />
-        <main className="container mt-16">
-          <div className="space-y-3">
-            <p className="text-3xl font-bold tracking-wide">Nossos projetos</p>
-            <p className="tracking-wide">
-              Descubra uma seleção de sites que desenvolvemos. Cada projeto é um
-              exemplo do nosso compromisso com a inovação e a excelência em
-              design e funcionalidade. Saiba como transformamos conceitos em
-              experiências digitais personalizadas e impactantes para nossos
-              clientes.
-            </p>
-          </div>
-          <div className="grid grid-cols-4 gap-4 mt-12">
-            {projects.map((project, index): any => (
-              <ProjectCard
-                key={index}
-                imgSrc={project.imgSrc}
-                logoSrc={project.logoSrc}
-                title={project.title}
-                description={project.description} // Ensure description is passed
-                link={project.link}
-              />
-            ))}
-          </div>
-        </main>
-      </div>
-      <div className="flex flex-col mr-8 justify-center items-center space-y-4">
-        <p className="vertical-text text-xl tracking-[.9rem]">Projetos</p>
-      </div>
-    </div>
+    </Suspense>
   );
 };
 
