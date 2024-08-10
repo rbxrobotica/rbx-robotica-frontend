@@ -232,6 +232,10 @@ const Home: React.FC = () => {
           <NavigationMenuBar />
           <BackgroundPattern position="top-40" left="left-40" />
           <BackgroundPattern position="bottom-48" right="right-80" />
+          <BackgroundPattern position="-bottom-10" left="left-80" />
+          <BackgroundPattern position="top-120" right="right-80" />
+          <BackgroundPattern position="-bottom-80" right="right-80" />
+
           <main className="container mt-16">
             <div className="space-y-3">
               <p className="text-3xl font-bold tracking-wide">
@@ -263,6 +267,9 @@ const Home: React.FC = () => {
           <p className="vertical-text text-xl tracking-[.9rem]">Projetos</p>
         </div>
       </div>
+      <footer className="bg-gray-400 h-auto mt-24 p-2 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 text-sm text-center">
+        © 2024 RBX Robótica. <span className="underline underline-offset-2 text-primary">Todos os direitos reservados.</span>
+      </footer>
     </Suspense>
   );
 };
