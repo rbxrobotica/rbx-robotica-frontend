@@ -6,6 +6,9 @@
   @apply rotate-90; /* Aplica a rotação de 90 graus */
   writing-mode: vertical-rl;
   transform: rotate(180deg); /* Ajusta a rotação para a direção vertical */
+  white-space: nowrap; /* Evita a quebra de linha */
+  overflow: hidden; /* Oculta o texto que ultrapassa o contêiner */
+  text-align: center; /* Centraliza o texto dentro do contêiner */
 }
 
 ::-webkit-scrollbar-track {
@@ -82,5 +85,12 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Ajustes responsivos para diferentes tamanhos de tela */
+@media (max-width: 768px) {
+  .vertical-text {
+    display: none;
   }
 }
