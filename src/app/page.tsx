@@ -27,9 +27,9 @@ const BackgroundPattern: React.FC<BackgroundPatternProps> = ({
   left,
 }) => (
   <div
-    className={`z-[-1] flex absolute ${position} ${bottom || ""} ${
+    className={`z-[-1] md:flex absolute ${position} ${bottom || ""} ${
       right || ""
-    } ${left || ""} place-items-center`}
+    } ${left || ""} place-md:items-center`}
   >
     <div className="absolute h-[300px] w-full -translate-x-1/2 rounded-full bg-gradient-radial from-white to-transparent blur-2xl dark:bg-gradient-to-br dark:from-transparent dark:via-[#00FFFF] dark:opacity-10 sm:w-[480px] lg:h-[360px]" />
     <div className="absolute -z-20 h-[180px] w-full translate-x-1/3 bg-gradient-conic from-sky-200 via-blue-200 blur-2xl dark:from-sky-900 dark:via-[#0e7272] dark:opacity-40 sm:w-[240px]" />
@@ -54,9 +54,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description, // Add description here
   link,
 }) => (
-  <div className="h-auto bg-gray-400 p-5 space-y-5 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
+  <div className="h-auto bg-gray-400 p-5 md:space-y-5 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
     {logoSrc && (
-      <div className="flex justify-center items-center space-x-3">
+      <div className="md:flex md:justify-center md:items-center space-x-3">
         <Image
           src={logoSrc}
           className="bg-gray-400 shadow-sm rounded-full p-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"
@@ -89,7 +89,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <li>Mensageria via e-mail</li>
           </ul>
         </div>
-        <div className="flex justify-between items-center mt-4">
+        <div className="md:flex md:justify-between md:items-center mt-4">
           <SheetPainel
             imgSrc={imgSrc}
             logoSrc={logoSrc}
@@ -136,108 +136,32 @@ const projects = [
     description: "Description of Cromo Financiamentos",
     link: "https://www.cromofinanciamentos.com.br",
   },
-  {
-    imgSrc: [
-      "/cromo/cromo-financiamento-tela-1.png",
-      "/cromo/cromo-financiamento-tela-2.png",
-      "/cromo/cromo-financiamento-tela-3.png",
-      "/cromo/cromo-financiamento-tela-4.png",
-    ],
-    logoSrc:
-      "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
-    title: "Cromo Financiamentos",
-    description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br",
-  },
-  {
-    imgSrc: [
-      "/cromo/cromo-financiamento-tela-1.png",
-      "/cromo/cromo-financiamento-tela-2.png",
-      "/cromo/cromo-financiamento-tela-3.png",
-      "/cromo/cromo-financiamento-tela-4.png",
-    ],
-    logoSrc:
-      "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
-    title: "Cromo Financiamentos",
-    description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br",
-  },
-  {
-    imgSrc: [
-      "/cromo/cromo-financiamento-tela-1.png",
-      "/cromo/cromo-financiamento-tela-2.png",
-      "/cromo/cromo-financiamento-tela-3.png",
-      "/cromo/cromo-financiamento-tela-4.png",
-    ],
-    logoSrc:
-      "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
-    title: "Cromo Financiamentos",
-    description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br",
-  },
-  {
-    imgSrc: [
-      "/cromo/cromo-financiamento-tela-1.png",
-      "/cromo/cromo-financiamento-tela-2.png",
-      "/cromo/cromo-financiamento-tela-3.png",
-      "/cromo/cromo-financiamento-tela-4.png",
-    ],
-    logoSrc:
-      "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
-    title: "Cromo Financiamentos",
-    description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br",
-  },
-  {
-    imgSrc: [
-      "/cromo/cromo-financiamento-tela-1.png",
-      "/cromo/cromo-financiamento-tela-2.png",
-      "/cromo/cromo-financiamento-tela-3.png",
-      "/cromo/cromo-financiamento-tela-4.png",
-    ],
-    logoSrc:
-      "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
-    title: "Cromo Financiamentos",
-    description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br",
-  },
-  {
-    imgSrc: [
-      "/cromo/cromo-financiamento-tela-1.png",
-      "/cromo/cromo-financiamento-tela-2.png",
-      "/cromo/cromo-financiamento-tela-3.png",
-      "/cromo/cromo-financiamento-tela-4.png",
-    ],
-    logoSrc:
-      "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
-    title: "Cromo Financiamentos",
-    description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br",
-  },
+  
+
 ];
 
 const Home: React.FC = () => {
   return (
     <Suspense fallback={<p>Loading feed...</p>}>
       <div className="max-w-screen flex">
-        <div className="flex flex-col ml-8 mr-2 justify-center items-center space-y-4">
-          <span className="w-0.5 h-1/6 mb-52 fixed bg-foreground"></span>
-          <div className="space-y-3 fixed z-20">
-            <InstagramLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
-            <LinkedInLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
-            <GitHubLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
+        <div className="flex flex-col md:ml-8 md:mr-2 md:justify-center md:items-center md:space-y-4 lg:ml-8 lg:mr-2 lg:justify-center lg:items-center lg:space-y-4">
+          <span className="md:w-0.5 md:h-1/6 md:mb-52 md:fixed md:-bottom-11 md:bg-foreground lg:w-0.5 lg:h-1/6 lg:mb-52 lg:fixed lg:-bottom-11 lg:bg-foreground"></span>
+          <div className="md:space-y-3 md:fixed md:bottom-14 md:z-20 lg:space-y-3 lg:fixed lg:bottom-14 lg:z-20">
+            <InstagramLogoIcon className="cursor-pointer md:h-5 md:w-5 lg:h-5 lg:w-5 hover:text-primary" />
+            <LinkedInLogoIcon className="cursor-pointer md:h-5 md:w-5 lg:h-5 lg:w-5 hover:text-primary" />
+            <GitHubLogoIcon className="cursor-pointer md:h-5 md:w-5 lg:h-5 lg:w-5 hover:text-primary" />
           </div>
         </div>
         <div>
           <NavigationMenuBar />
-          <BackgroundPattern position="top-40" left="left-40" />
-          <BackgroundPattern position="bottom-48" right="right-80" />
-          <BackgroundPattern position="-bottom-10" left="left-80" />
-          <BackgroundPattern position="top-120" right="right-80" />
-          <BackgroundPattern position="-bottom-80" right="right-80" />
+          <BackgroundPattern position="top-40 top-40" left="left-40 left-40" />
+          <BackgroundPattern position="bottom-48 bottom-52" right="right-80 right-80" />
+          {/* <BackgroundPattern position="-bottom-10" left="left-80" /> */}
+          <BackgroundPattern position="top-120 top-120" right="right-80 right-80" />
+          {/* <BackgroundPattern position="-bottom-80" right="right-80" /> */}
 
-          <main className="container mt-16">
-            <div className="space-y-3">
+          <main className="md:container md:mt-16 lg:container lg:mt-16">
+            <div className="md:space-y-3 lg:space-y-3">
               <p className="text-3xl font-bold tracking-wide">
                 Nossos projetos
               </p>
@@ -249,7 +173,7 @@ const Home: React.FC = () => {
                 clientes.
               </p>
             </div>
-            <div className="grid grid-cols-4 gap-4 mt-12">
+            <div className="md:grid md:grid-cols-4 md:gap-4 md:mt-12 lg:grid lg:grid-cols-4 lg:gap-4 lg:mt-12">
               {projects.map((project, index): any => (
                 <ProjectCard
                   key={index}
@@ -263,12 +187,12 @@ const Home: React.FC = () => {
             </div>
           </main>
         </div>
-        <div className="flex flex-col mr-8 justify-center items-center space-y-4">
+        <div className="md:flex md:flex-col md:mr-8 md:justify-center md:items-center md:space-y-4 lg:flex lg:flex-col lg:mr-8 lg:justify-center lg:items-center lg:space-y-4">
           <p className="vertical-text text-xl tracking-[.9rem]">Projetos</p>
         </div>
       </div>
 
-      <footer className="bg-gray-400 h-auto mt-24 p-2 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 text-sx text-center">
+      <footer className="text-sx text-center md:bg-gray-400 md:h-auto md:mt-24 md:p-2 md:bg-clip-padding md:backdrop-filter md:backdrop-blur-lg md:bg-opacity-10 lg:bg-gray-400 lg:h-auto lg:mt-24 lg:p-2 lg:bg-clip-padding lg:backdrop-filter lg:backdrop-blur-lg lg:bg-opacity-10">
         © 2024 RBX Robótica. <span className="underline underline-offset-2 text-primary">Todos os direitos reservados.</span>
       </footer>
    
