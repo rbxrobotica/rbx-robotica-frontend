@@ -54,9 +54,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description, // Add description here
   link,
 }) => (
-  <div className="h-auto bg-gray-400 p-5 md:space-y-5 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
+  <div className="h-auto bg-gray-400 p-5 space-y-5 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
     {logoSrc && (
-      <div className="md:flex md:justify-center md:items-center space-x-3">
+      <div className="flex justify-center items-center space-x-3">
         <Image
           src={logoSrc}
           className="bg-gray-400 shadow-sm rounded-full p-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"
@@ -89,7 +89,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <li>Mensageria via e-mail</li>
           </ul>
         </div>
-        <div className="md:flex md:justify-between md:items-center mt-4">
+        <div className="flex justify-between items-center mt-4">
           <SheetPainel
             imgSrc={imgSrc}
             logoSrc={logoSrc}
@@ -110,19 +110,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 );
 
 const projects = [
-  {
-    imgSrc: [
-      "/cromo/cromo-financiamento-tela-1.png",
-      "/cromo/cromo-financiamento-tela-2.png",
-      "/cromo/cromo-financiamento-tela-3.png",
-      "/cromo/cromo-financiamento-tela-4.png",
-    ],
-    logoSrc:
-      "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
-    title: "Cromo Financiamentos",
-    description: "Description of Cromo Financiamentos",
-    link: "https://www.cromofinanciamentos.com.br",
-  },
   {
     imgSrc: [
       "/cromo/cromo-financiamento-tela-1.png",

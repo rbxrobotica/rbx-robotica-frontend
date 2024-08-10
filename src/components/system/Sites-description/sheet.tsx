@@ -33,7 +33,7 @@ export function SheetPainel({
         </Button>
       </SheetTrigger>
       <SheetContent className="h-4/5 overflow-auto space-y-9" side="bottom">
-        <div className="flex items-center space-x-6 container">
+        <div className="flex items-center space-x-6 md:container">
           <Image
             src={logoSrc}
             className="bg-gray-400 shadow-sm rounded-lg p-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"
@@ -49,8 +49,8 @@ export function SheetPainel({
           </div>
         </div>
         <hr />
-        <div className="flex container justify-between items-center mt-6">
-          <div className="w-3/5 space-y-4">
+        <div className="flex flex-col-reverse md:flex md:flex-row md:container md:justify-between md:items-center md:mt-6">
+          <div className="md:w-3/5 space-y-4">
             <p className="text-3xl font-bold tracking-wide">Sobre a {title}</p>
             <p className="text-justify leading-relaxed">
               Na Cromo Financiamentos, transformar sonhos em realidade é a sua
@@ -82,21 +82,21 @@ export function SheetPainel({
               </li>
             </ul>
           </div>
-          <div className="mt-12">
+          <div className="md:mt-12">
             <CarouselDApi imgSrc={imgSrc} />
           </div>
         </div>
-        <div className="container space-y-4">
-          <p className="text-3xl font-bold tracking-wide">
+        <div className="md:container space-y-4">
+          <p className="text-2xl md:text-3xl font-bold tracking-wide">
             Informações para contato
           </p>
-          <div className="flex space-x-8 ">
+          <div className="space-y-3 md:flex md:space-x-8 ">
             <div className="flex space-x-2 items-center">
               <PhoneOutgoing className="mr-2 h-4 w-4 text-foreground dark:text-primary" />
               0800 591 8723
             </div>
-            <div className="flex space-x-2 items-center">
-              <MapPin className="mr-2 h-4 w-4 text-foreground dark:text-primary" />
+            <div className="flex md:space-x-2 items-center">
+              <MapPin className="mr-2 h-8 w-8 text-foreground dark:text-primary" />
               Rua Vinte e Quatro de Maio, 188. Andar 5. Centro. 01041-903. São
               Paulo, SP.
             </div>

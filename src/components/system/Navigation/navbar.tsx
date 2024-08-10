@@ -15,6 +15,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { ModeToggle } from "../toggleBtnThemeMode"
+import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -58,7 +59,7 @@ export function NavigationMenuBar() {
   return (
     <nav className="flex justify-center m-5">
     <NavigationMenu>
-      <NavigationMenuList>
+      <NavigationMenuList className="space-x-3">
         {/* <NavigationMenuItem>
           <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -117,6 +118,12 @@ export function NavigationMenuBar() {
           </Link>
         </NavigationMenuItem> */}
         <ModeToggle />
+       
+          <div className="flex space-x-4 md:hidden lg:hidden">
+            <InstagramLogoIcon className="cursor-pointer h-5 w-5 hover:text-primary md:hidden lg:hidden" />
+            <LinkedInLogoIcon className="cursor-pointer h-5 w-5 hover:text-primary md:hidden lg:hidden" />
+            <GitHubLogoIcon className="cursor-pointer h-5 w-5 hover:text-primary md:hidden lg:hidden" />
+        </div>
       </NavigationMenuList>
     </NavigationMenu>
     </nav>

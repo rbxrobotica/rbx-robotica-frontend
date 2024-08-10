@@ -22,7 +22,7 @@ export function CarouselDApi({ imgSrc = [] }: CarouselDApiProps) {
       orientation="vertical"
       className="w-full max-w-md"
     >
-      <CarouselContent className="-mt-1 h-[300px]">
+      <CarouselContent className="h-[250px] md:-mt-1 md:h-[300px]">
         {imgSrc.map((src, index) => (
           <CarouselItem key={index} className="">
             <div className="p-1">
@@ -43,8 +43,8 @@ export function CarouselDApi({ imgSrc = [] }: CarouselDApiProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="hidden md:flex lg:flex"/>
+      <CarouselNext className="hidden md:flex lg:flex" />
     </Carousel>
   );
 }
