@@ -136,15 +136,13 @@ const projects = [
     description: "Description of Cromo Financiamentos",
     link: "https://www.cromofinanciamentos.com.br",
   },
-  
-
 ];
 
 const Home: React.FC = () => {
   return (
     <Suspense fallback={<p>Loading feed...</p>}>
       <div className="max-w-screen flex">
-        <div className="flex flex-col md:ml-8 md:mr-2 md:justify-center md:items-center md:space-y-4 lg:ml-8 lg:mr-2 lg:justify-center lg:items-center lg:space-y-4">
+        <div className="hidden md:flex md:flex-col md:ml-8 md:mr-2 md:justify-center md:items-center md:space-y-4 lg:flex lg:flex-col lg:ml-8 lg:mr-2 lg:justify-center lg:items-center lg:space-y-4">
           <span className="md:w-0.5 md:h-1/6 md:mb-52 md:fixed md:-bottom-11 md:bg-foreground lg:w-0.5 lg:h-1/6 lg:mb-52 lg:fixed lg:-bottom-11 lg:bg-foreground"></span>
           <div className="md:space-y-3 md:fixed md:bottom-14 md:z-20 lg:space-y-3 lg:fixed lg:bottom-14 lg:z-20">
             <InstagramLogoIcon className="cursor-pointer md:h-5 md:w-5 lg:h-5 lg:w-5 hover:text-primary" />
@@ -155,13 +153,19 @@ const Home: React.FC = () => {
         <div>
           <NavigationMenuBar />
           <BackgroundPattern position="top-40 top-40" left="left-40 left-40" />
-          <BackgroundPattern position="bottom-48 bottom-52" right="right-80 right-80" />
+          <BackgroundPattern
+            position="bottom-48 bottom-52"
+            right="right-80 right-80"
+          />
           {/* <BackgroundPattern position="-bottom-10" left="left-80" /> */}
-          <BackgroundPattern position="top-120 top-120" right="right-80 right-80" />
+          <BackgroundPattern
+            position="top-120 top-120"
+            right="right-80 right-80"
+          />
           {/* <BackgroundPattern position="-bottom-80" right="right-80" /> */}
 
-          <main className="md:container md:mt-16 lg:container lg:mt-16">
-            <div className="md:space-y-3 lg:space-y-3">
+          <main className="container mt-16">
+            <div className="space-y-3">
               <p className="text-3xl font-bold tracking-wide">
                 Nossos projetos
               </p>
@@ -173,7 +177,8 @@ const Home: React.FC = () => {
                 clientes.
               </p>
             </div>
-            <div className="md:grid md:grid-cols-4 md:gap-4 md:mt-12 lg:grid lg:grid-cols-4 lg:gap-4 lg:mt-12">
+            <hr className="flex my-10 md:hidden lg:hidden" />
+            <div className="grid gap-4 md:grid-cols-4 mt-12 lg:grid lg:grid-cols-4 lg:gap-4 lg:mt-12">
               {projects.map((project, index): any => (
                 <ProjectCard
                   key={index}
@@ -192,10 +197,13 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      <footer className="text-sx text-center md:bg-gray-400 md:h-auto md:mt-24 md:p-2 md:bg-clip-padding md:backdrop-filter md:backdrop-blur-lg md:bg-opacity-10 lg:bg-gray-400 lg:h-auto lg:mt-24 lg:p-2 lg:bg-clip-padding lg:backdrop-filter lg:backdrop-blur-lg lg:bg-opacity-10">
-        © 2024 RBX Robótica. <span className="underline underline-offset-2 text-primary">Todos os direitos reservados.</span>
+      <footer className="text-sx text-center md:bg-gray-400 md:h-auto mt-24 md:mt-0 md:p-2 md:bg-clip-padding md:backdrop-filter md:backdrop-blur-lg md:bg-opacity-10 lg:bg-gray-400 lg:h-auto lg:mt-24 lg:p-2 lg:bg-clip-padding lg:backdrop-filter lg:backdrop-blur-lg lg:bg-opacity-10">
+        © 2024 RBX Robótica.{" "}
+        <span className="underline underline-offset-2 text-primary">
+          Todos os direitos reservados.
+        </span>
       </footer>
-   
+      <br className="flex md:hidden lg:hidden" />
     </Suspense>
   );
 };
