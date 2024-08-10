@@ -1,4 +1,4 @@
-name: Cromo Production CI/CD Pipeline
+name: RBX Production CI/CD Pipeline
 
 on:
   push:
