@@ -1,5 +1,6 @@
 {
   "name": "rbx_robotica_frontend",
+  "author": "Anthony S Farias",
   "version": "0.1.0",
   "private": true,
   "scripts": {
