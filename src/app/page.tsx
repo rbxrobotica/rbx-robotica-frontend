@@ -222,7 +222,7 @@ const Home: React.FC = () => {
       <div className="max-w-screen flex">
         <div className="flex flex-col ml-8 mr-2 justify-center items-center space-y-4">
           <span className="w-0.5 h-1/6 mb-52 fixed bg-foreground"></span>
-          <div className="space-y-3 fixed">
+          <div className="space-y-3 fixed z-20">
             <InstagramLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
             <LinkedInLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
             <GitHubLogoIcon className="h-5 w-5 cursor-pointer hover:text-primary" />
@@ -267,9 +267,11 @@ const Home: React.FC = () => {
           <p className="vertical-text text-xl tracking-[.9rem]">Projetos</p>
         </div>
       </div>
-      <footer className="bg-gray-400 h-auto mt-24 p-2 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 text-sm text-center">
+
+      <footer className="bg-gray-400 h-auto mt-24 p-2 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 text-sx text-center">
         © 2024 RBX Robótica. <span className="underline underline-offset-2 text-primary">Todos os direitos reservados.</span>
       </footer>
+   
     </Suspense>
   );
 };
