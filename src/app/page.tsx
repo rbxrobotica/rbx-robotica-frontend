@@ -40,7 +40,10 @@ interface ProjectCardProps {
   imgSrc?: string[];
   logoSrc?: string;
   title: string;
-  description: string; // Add description here
+  description: string;
+  about: string;
+  endereco: string;
+  phone: string;
   link: string;
 }
 const handleClick = (link: string) => () => {
@@ -51,12 +54,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   imgSrc,
   logoSrc,
   title,
-  description, // Add description here
+  description,
+  about,
+  endereco,
+  phone,
   link,
 }) => (
   <div className="h-auto bg-gray-400 p-5 space-y-5 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
     {logoSrc && (
-      <div className="flex justify-center items-center space-x-3">
+      <div className="flex justify-start items-center space-x-3">
         <Image
           src={logoSrc}
           className="bg-gray-400 shadow-sm rounded-full p-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"
@@ -95,6 +101,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             logoSrc={logoSrc}
             title={title}
             description={description}
+            about={about}
+            endereco={endereco}
+            phone={phone}
           />{" "}
           {/* Pass description here */}
           <Button variant="link" onClick={handleClick(link)}>
@@ -120,8 +129,68 @@ const projects = [
     logoSrc:
       "https://www.cromofinanciamentos.com.br/logo-transparent-background.png",
     title: "Cromo Financiamentos",
-    description: "Description of Cromo Financiamentos",
+    description: "Site de financiamento de automóveis",
+    about: `<p className="text-justify leading-relaxed">
+              Na Cromo Financiamentos, transformar sonhos em realidade é a sua
+              paixão! Com ampla experiência no mercado, são especialistas em
+              realizar o sonho de ter a casa própria, um carro novo, a moto de
+              sua preferência, um caminhão que movimenta seu negócio ou um barco
+              que te leva a momentos inesquecíveis. <br />
+              Oferece soluções financeiras personalizadas para cada cliente, com
+              tarifas competitivas, parcelas acessíveis e atendimento
+              excepcional.
+            </p>
+            <ul className="list-disc ml-6 leading-loose">
+              <li>
+                <strong>Confiança</strong>: Acreditam na construção de
+                relacionamentos duradouros e transparentes com os clientes.
+                <br />
+              </li>
+              <li>
+                <strong>Agilidade</strong>: Buscam rapidez e eficiência em todos
+                os processos para que os sonhos se tornem realidade o mais
+                rápido possível. <br />
+              </li>
+              <li>
+                <strong>Inovação</strong>: Estou sempre em busca de novas
+                soluções para atender as necessidades dos clientes de forma cada
+                vez mais completa. Compromisso: Estamos comprometidos em
+                fornecer a melhor experiência possível a cada cliente.
+              </li>
+            </ul>`,
+    endereco: `Rua Vinte e Quatro de Maio, 188. Andar 5. Centro. 01041-903.
+                  SãoPaulo, SP.`,
+    phone: "0800 591 8723",
     link: "https://www.cromofinanciamentos.com.br",
+  },
+  {
+    imgSrc: [
+      "/AF/anthony-portifolio-1.png",
+      "/AF/anthony-portifolio-2.png",
+      "/AF/anthony-portifolio-3.png",
+      "/AF/anthony-portifolio-4.png",
+    ],
+    logoSrc: "https://cdn-icons-png.flaticon.com/128/4139/4139981.png",
+    title: "Anthony S Farias",
+    description: "Portifólio",
+    about:
+      `<p className="text-justify leading-relaxed">
+        Dedicando-se com paixão e expertise, trabalhando incansavelmente para transformar 
+        habilidosamente linhas de código em soluções eficazes e eficientes que atendem às 
+        necessidades e desafios de nossos clientes.
+        Ele é um desenvolvedor apaixonado por transformar ideias em realidade 
+        através da programação. Com uma mente criativa e uma sólida base técnica,
+        ele está constantemente em busca de desafios que lhe permitam criar 
+        soluções inovadoras. Sua jornada no mundo da tecnologia proporcionou-lhe 
+        a oportunidade de trabalhar em vários projetos empolgantes e aprender 
+        com cada um deles. <br/> Ele está determinado a continuar aperfeiçoando suas 
+        habilidades e colaborando em projetos que promovam a inovação e o progresso 
+        tecnológico. Bem-vindo ao seu portfólio, onde é possível explorar seu trabalho 
+        e conhecer um pouco mais sobre quem ele é como desenvolvedor.
+      </p>`,
+    endereco: "Não informado",
+    phone: "11 95468-4812",
+    link: "https://anthonysfarias.vercel.app/",
   },
 ];
 
@@ -172,7 +241,10 @@ const Home: React.FC = () => {
                   imgSrc={project.imgSrc}
                   logoSrc={project.logoSrc}
                   title={project.title}
-                  description={project.description} // Ensure description is passed
+                  description={project.description}
+                  about={project.about}
+                  endereco={project.endereco}
+                  phone={project.phone}
                   link={project.link}
                 />
               ))}

@@ -10,12 +10,16 @@ import {
 import { CarouselDApi } from "../Carousel/carousel";
 import Image from "next/image";
 import { Map, MapPin, PhoneOutgoing } from "lucide-react";
+import ReactHtmlParser from "react-html-parser";
 
 interface SheetPainelProps {
   imgSrc?: string[];
   logoSrc: any;
   title: string;
-  description: string; // Define description prop
+  description: string;
+  about: string;
+  phone: string;
+  endereco: string;
 }
 
 export function SheetPainel({
@@ -23,6 +27,9 @@ export function SheetPainel({
   logoSrc,
   title,
   description,
+  about,
+  endereco,
+  phone
 }: SheetPainelProps) {
   // Destructure description from props
   return (
@@ -51,36 +58,8 @@ export function SheetPainel({
         <hr />
         <div className="flex flex-col-reverse md:flex md:flex-row md:container md:justify-between md:items-center md:mt-6">
           <div className="md:w-3/5 space-y-4">
-            <p className="text-3xl font-bold tracking-wide">Sobre a {title}</p>
-            <p className="text-justify leading-relaxed">
-              Na Cromo Financiamentos, transformar sonhos em realidade é a sua
-              paixão! Com ampla experiência no mercado, são especialistas em
-              realizar o sonho de ter a casa própria, um carro novo, a moto de
-              sua preferência, um caminhão que movimenta seu negócio ou um barco
-              que te leva a momentos inesquecíveis. <br />
-              Oferece soluções financeiras personalizadas para cada cliente, com
-              tarifas competitivas, parcelas acessíveis e atendimento
-              excepcional.
-            </p>
-            <ul className="list-disc ml-6 leading-loose">
-              <li>
-                <strong>Confiança</strong>: Acreditam na construção de
-                relacionamentos duradouros e transparentes com os clientes.{" "}
-                <br />
-              </li>
-              <li>
-                <strong>Agilidade</strong>: Buscam rapidez e eficiência em todos
-                os processos para que os sonhos se tornem realidade o mais
-                rápido possível. <br />
-              </li>
-              <li>
-                {" "}
-                <strong>Inovação</strong>: Estou sempre em busca de novas
-                soluções para atender as necessidades dos clientes de forma cada
-                vez mais completa. Compromisso: Estamos comprometidos em
-                fornecer a melhor experiência possível a cada cliente.
-              </li>
-            </ul>
+            <p className="text-3xl font-bold tracking-wide">Sobre o cliente</p>
+            {ReactHtmlParser(about)}
           </div>
           <div className="md:mt-12">
             <CarouselDApi imgSrc={imgSrc} />
@@ -90,15 +69,14 @@ export function SheetPainel({
           <p className="text-2xl md:text-3xl font-bold tracking-wide">
             Informações para contato
           </p>
-          <div className="space-y-3 md:flex md:space-x-8 ">
+          <div className="space-y-3 md:flex md:items-center md:space-x-6 md:space-y-0">
             <div className="flex space-x-2 items-center">
               <PhoneOutgoing className="mr-2 h-4 w-4 text-foreground dark:text-primary" />
-              0800 591 8723
+              {phone}
             </div>
-            <div className="flex md:space-x-2 items-center">
-              <MapPin className="mr-2 h-8 w-8 text-foreground dark:text-primary" />
-              Rua Vinte e Quatro de Maio, 188. Andar 5. Centro. 01041-903. São
-              Paulo, SP.
+            <div className="flex space-x-2 items-center">
+              <MapPin className="mr-2 h-4 w-4 text-foreground dark:text-primary" />
+              {endereco}
             </div>
           </div>
         </div>
