@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import { CarouselDApi } from "../Carousel/carousel";
 import Image from "next/image";
-import { Map, MapPin, PhoneOutgoing } from "lucide-react";
+import { MapPin, PhoneOutgoing } from "lucide-react";
 import ReactHtmlParser from "react-html-parser";
 
 interface SheetPainelProps {

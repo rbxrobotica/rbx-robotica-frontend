@@ -1,10 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
-// import { Icons } from "@/components/icons"
+import { cn } from "@/lib/utils";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,9 +12,13 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import { ModeToggle } from "../toggleBtnThemeMode"
-import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons"
+} from "@/components/ui/navigation-menu";
+import { ModeToggle } from "../toggleBtnThemeMode";
+import {
+  GitHubLogoIcon,
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+} from "@radix-ui/react-icons";
 
 // const components: { title: string; href: string; description: string }[] = [
 //   {
@@ -58,76 +61,76 @@ import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/r
 export function NavigationMenuBar() {
   return (
     <nav className="flex justify-center m-5">
-    <NavigationMenu>
-      <NavigationMenuList className="space-x-3">
-        {/* <NavigationMenuItem>
-          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                  <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
-                  >
-                    <Icons.logo className="h-6 w-6" />
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
-                    </div>
-                    <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed components that you can copy and
-                      paste into your apps. Accessible. Customizable. Open
-                      Source.
-                    </p>
-                  </a>
-                </NavigationMenuLink>
-              </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
-              </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
-              </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem> */}
-        {/* <NavigationMenuItem>
-          <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem> */}
-        {/* <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem> */}
-        <ModeToggle />
-       
+      <NavigationMenu>
+        <NavigationMenuList className="space-x-3">
+          {/* <NavigationMenuItem>
+  <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+  <NavigationMenuContent>
+    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+      <li className="row-span-3">
+        <NavigationMenuLink asChild>
+          <a
+            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+            href="/"
+          >
+            <Icons.logo className="h-6 w-6" />
+            <div className="mb-2 mt-4 text-lg font-medium">
+              shadcn/ui
+            </div>
+            <p className="text-sm leading-tight text-muted-foreground">
+              Beautifully designed components that you can copy and
+              paste into your apps. Accessible. Customizable. Open
+              Source.
+            </p>
+          </a>
+        </NavigationMenuLink>
+      </li>
+      <ListItem href="/docs" title="Introduction">
+        Re-usable components built using Radix UI and Tailwind CSS.
+      </ListItem>
+      <ListItem href="/docs/installation" title="Installation">
+        How to install dependencies and structure your app.
+      </ListItem>
+      <ListItem href="/docs/primitives/typography" title="Typography">
+        Styles for headings, paragraphs, lists...etc
+      </ListItem>
+    </ul>
+  </NavigationMenuContent>
+</NavigationMenuItem> */}
+          {/* <NavigationMenuItem>
+  <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+  <NavigationMenuContent>
+    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+      {components.map((component) => (
+        <ListItem
+          key={component.title}
+          title={component.title}
+          href={component.href}
+        >
+          {component.description}
+        </ListItem>
+      ))}
+    </ul>
+  </NavigationMenuContent>
+</NavigationMenuItem> */}
+          {/* <NavigationMenuItem>
+  <Link href="/docs" legacyBehavior passHref>
+    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+      Documentation
+    </NavigationMenuLink>
+  </Link>
+</NavigationMenuItem> */}
+          <ModeToggle />
+
           <div className="flex space-x-4 md:hidden lg:hidden">
             <InstagramLogoIcon className="cursor-pointer h-5 w-5 hover:text-primary md:hidden lg:hidden" />
             <LinkedInLogoIcon className="cursor-pointer h-5 w-5 hover:text-primary md:hidden lg:hidden" />
             <GitHubLogoIcon className="cursor-pointer h-5 w-5 hover:text-primary md:hidden lg:hidden" />
-        </div>
-      </NavigationMenuList>
-    </NavigationMenu>
+          </div>
+        </NavigationMenuList>
+      </NavigationMenu>
     </nav>
-  )
+  );
 }
 
 const ListItem = React.forwardRef<
@@ -152,6 +155,6 @@ const ListItem = React.forwardRef<
         </a>
       </NavigationMenuLink>
     </li>
-  )
-})
-ListItem.displayName = "ListItem"
+  );
+});
+ListItem.displayName = "ListItem";
