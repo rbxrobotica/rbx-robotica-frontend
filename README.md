@@ -14,6 +14,8 @@ Algumas rotas importantes:
 /nossa-historia
 /nosso-modelo-de-negocios
 /parceria
+/quero-ser-parceiro
+/parceiro-estrategico
 /loja
 /nossa-infraestrutura
 /processo-de-desenvolvimento
@@ -28,6 +30,7 @@ Algumas rotas importantes:
 /protecao-de-dados
 /extracao-de-dados
 /pipeline-de-dados
+/analise-de-dados
 /fluxo-de-dados
 /integracao-de-sistemas
 /desenvolvimento-de-sistemas
@@ -55,7 +58,20 @@ Algumas rotas importantes:
 /terceirizacao
 /suporte
 /manutencao
-
+/marketing
+/ferramentas-de-marketing
+/marketing-digital
+/leads
+/crm
+/geracao-de-leads
+/captura-de-leads
+/anuncios
+/disparo
+/trafego-pago
+/vendas-online
+/bi
+/inteligencia-de-negocios
+/gestao-de-projetos
 
 
 Este é um projeto [Next.js](https://nextjs.org/) inicializado com [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
