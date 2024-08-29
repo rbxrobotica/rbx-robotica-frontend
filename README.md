@@ -4,6 +4,7 @@ Algumas rotas importantes:
 
 /projetos
 /login
+/cadastro
 /quem-somos
 /contato
 /politica-de-privacidade
@@ -20,6 +21,9 @@ Algumas rotas importantes:
 /backup
 /automacao
 /automacoes
+/webservices
+/produtos
+/precos
 /protecao-de-dados
 /extracao-de-dados
 /pipeline-de-dados
