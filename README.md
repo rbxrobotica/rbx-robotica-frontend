@@ -2,6 +2,7 @@
 
 Algumas rotas importantes:
 
+/projetos
 /login
 /quem-somos
 /contato
