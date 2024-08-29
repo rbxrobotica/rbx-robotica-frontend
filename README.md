@@ -22,8 +22,31 @@ Algumas rotas importantes:
 /protecao-de-dados
 /extracao-de-dados
 /pipeline-de-dados
-/fluxos-de-dados
+/fluxo-de-dados
 /integracao-de-sistemas
+/desenvolvimento-de-sistemas
+/desenvolvimento-de-software
+/desenvolvimento-de-api
+/desenvolvimento-de-sistemas-web
+/desenvolvimento-de-sistemas-web-formulario-dados-por-email
+/desenvolvimento-de-aplicativos-mobile
+/desenvolvimento-de-sistemas-embarcados
+/desenvolvimento-de-sistemas-desktop
+/desenvolvimento-de-sistemas-delivery
+/desenvolvimento-de-sistemas-delivery-restaurantes
+/desenvolvimento-de-sistemas-delivery-entregadores
+/desenvolvimento-de-sistemas-pagamentos
+/desenvolvimento-de-sistemas-inteligencia-artificial
+/desenvolvimento-de-sistemas-autonomos
+/desenvolvimento-de-hardware
+/fabricacao-de-pcb
+/treinamento
+/implementacao
+/implantacao
+/consultoria
+/terceirizacao
+/suporte
+/manutencao
 
 
 
