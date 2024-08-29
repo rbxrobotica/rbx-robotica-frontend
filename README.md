@@ -1,3 +1,32 @@
+
+
+Algumas rotas importantes:
+
+/login
+/quem-somos
+/contato
+/politica-de-privacidade
+/termos-de-uso
+/servicos
+/nossa-historia
+/nosso-modelo-de-negocios
+/parceria
+/loja
+/nossa-infraestrutura
+/processo-de-desenvolvimento
+/nossos-valores
+/sistemas
+/backup
+/automacao
+/automacoes
+/protecao-de-dados
+/extracao-de-dados
+/pipeline-de-dados
+/fluxos-de-dados
+/integracao-de-sistemas
+
+
+
 Este é um projeto [Next.js](https://nextjs.org/) inicializado com [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Começando
