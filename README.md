@@ -3,6 +3,7 @@
 Algumas rotas importantes:
 
 /projetos
+/portfolio
 /login
 /cadastro
 /quem-somos
@@ -41,6 +42,8 @@ Algumas rotas importantes:
 /desenvolvimento-de-sistemas-delivery-restaurantes
 /desenvolvimento-de-sistemas-delivery-entregadores
 /desenvolvimento-de-sistemas-pagamentos
+/desenvolvimento-de-sistemas-ecommerce
+/desenvolvimento-de-sistemas-investimentos
 /desenvolvimento-de-sistemas-inteligencia-artificial
 /desenvolvimento-de-sistemas-autonomos
 /desenvolvimento-de-hardware
