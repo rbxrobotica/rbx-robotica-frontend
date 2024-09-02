@@ -78,7 +78,6 @@
   }
 }
 
-
 @layer base {
   * {
     @apply border-border;
@@ -88,9 +87,16 @@
   }
 }
 
-/* Ajustes responsivos para diferentes tamanhos de tela */
 @media (max-width: 768px) {
   .vertical-text {
     display: none;
   }
 }
+
+main {
+  min-width: 90vw;
+  min-height: calc(80vh - 4rem);
+  padding: 2rem;
+}
+
+

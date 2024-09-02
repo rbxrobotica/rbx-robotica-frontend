@@ -1,5 +1,5 @@
 "use client";
-import { NavigationMenuBar } from "@/components/system/Navigation/navbar";
+import Footer from "@/components/layout/footer";
 import { SheetPainel } from "@/components/system/Sites-description/sheet";
 import { Button } from "@/components/ui/button";
 import {
@@ -196,7 +196,7 @@ const projects = [
 
 const Home: React.FC = () => {
   return (
-    <Suspense fallback={<p>Loading feed...</p>}>
+    <div>
       <div className="max-w-screen flex">
         <div className="hidden md:flex md:flex-col md:ml-8 md:mr-2 md:justify-center md:items-center md:space-y-4 lg:flex lg:flex-col lg:ml-8 lg:mr-2 lg:justify-center lg:items-center lg:space-y-4">
           <span className="md:w-0.5 md:h-1/6 md:mb-52 md:fixed md:-bottom-11 md:bg-foreground lg:w-0.5 lg:h-1/6 lg:mb-52 lg:fixed lg:-bottom-11 lg:bg-foreground"></span>
@@ -256,14 +256,10 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      <footer className="text-sx text-center md:bg-gray-400 md:h-auto mt-24 md:mt-0 md:p-2 md:bg-clip-padding md:backdrop-filter md:backdrop-blur-lg md:bg-opacity-10 lg:bg-gray-400 lg:h-auto lg:mt-24 lg:p-2 lg:bg-clip-padding lg:backdrop-filter lg:backdrop-blur-lg lg:bg-opacity-10">
-        © 2024 RBX Robótica.{" "}
-        <span className="underline underline-offset-2 text-primary">
-          Todos os direitos reservados.
-        </span>
-      </footer>
+      <Footer />
       <br className="flex md:hidden lg:hidden" />
-    </Suspense>
+      </div>
+
   );
 };
 
