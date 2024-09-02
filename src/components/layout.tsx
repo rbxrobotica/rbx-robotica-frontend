@@ -6,9 +6,10 @@ import Footer from "@/components/layout/footer";
 
 interface LayoutProps {
   children: React.ReactNode;
+  title: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, title }) => {
   return (
     <div>
       <div className="max-w-screen flex">
@@ -20,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             {children}
           </main>
         </div>
-        <Aside />
+        <Aside title={title}/>
       </div>
       <Footer />
       <br className="flex md:hidden lg:hidden" />
