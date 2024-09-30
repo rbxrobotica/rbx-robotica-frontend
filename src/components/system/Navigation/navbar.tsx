@@ -18,6 +18,7 @@ import {
   LinkedInLogoIcon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
+import Image from 'next/image';
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -63,64 +64,69 @@ export function NavigationMenuBar() {
       <NavigationMenu>
         <NavigationMenuList className="space-x-3">
           <NavigationMenuItem>
-  <NavigationMenuTrigger>Serviços</NavigationMenuTrigger>
-  <NavigationMenuContent>
-    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-      <li className="row-span-3">
-        <NavigationMenuLink asChild>
-          <a
-            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-            href="/"
-          >
-            <div className="h-6 w-6">
-              Logo
-            </div>
-            <div className="mb-2 mt-4 text-lg font-medium">
-              shadcn/ui
-            </div>
-            <p className="text-sm leading-tight text-muted-foreground">
-              Beautifully designed components that you can copy and
-              paste into your apps. Accessible. Customizable. Open
-              Source.
-            </p>
-          </a>
-        </NavigationMenuLink>
-      </li>
-      <ListItem href="/docs" title="Introduction">
-        Re-usable components built using Radix UI and Tailwind CSS.
-      </ListItem>
-      <ListItem href="/docs/installation" title="Installation">
-        How to install dependencies and structure your app.
-      </ListItem>
-      <ListItem href="/docs/primitives/typography" title="Typography">
-        Styles for headings, paragraphs, lists...etc
-      </ListItem>
-    </ul>
-  </NavigationMenuContent>
-</NavigationMenuItem>
+            <NavigationMenuTrigger>Serviços</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                <li className="row-span-3">
+                  <NavigationMenuLink asChild>
+                    <a
+                      className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                      href="/"
+                    >
+                      <div className="h-6 w-6">
+                        <Image
+                          src="/logo.png"
+                          alt="RBX Robótica"
+                          width={500}
+                          height={500}
+                        />
+                      </div>
+                      <div className="mb-2 mt-4 text-lg font-medium">
+                        Desenvolvimento Web
+                      </div>
+                      <p className="text-sm leading-tight text-muted-foreground">
+                        Nossa equipe altamente qualificada está pronta para
+                        entregar soluções digitais garatindo a proteção
+                        dos seus dados e o sucesso do seu negócio.
+                      </p>
+                    </a>
+                  </NavigationMenuLink>
+                </li>
+                <ListItem href="/nosso-modelo-de-negocios" title="Nosso Modelo de Negócios">
+                  Atuamos como parceiros estratégicos desenvolvendo sistemas personalizados.
+                </ListItem>
+                <ListItem href="/nossa-infraestrutura" title="Nossa infraestrutura">
+                  Segurança e hiperconvergência para Experiência do Usuário.
+                </ListItem>
+                <ListItem href="/processo-de-desenvolvimento" title="Processo de Desenvolvimento">
+                  Desde a concepção da ideia até a sua implementação e manutenção.
+                </ListItem>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
           <NavigationMenuItem>
-  <NavigationMenuTrigger>Portfólio</NavigationMenuTrigger>
-  <NavigationMenuContent>
-    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-      {components.map((component) => (
-        <ListItem
-          key={component.title}
-          title={component.title}
-          href={component.href}
-        >
-          {component.description}
-        </ListItem>
-      ))}
-    </ul>
-  </NavigationMenuContent>
-</NavigationMenuItem>
+            <NavigationMenuTrigger>Portfólio</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                {components.map((component) => (
+                  <ListItem
+                    key={component.title}
+                    title={component.title}
+                    href={component.href}
+                  >
+                    {component.description}
+                  </ListItem>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
           <NavigationMenuItem>
-  <Link href="/docs" legacyBehavior passHref>
-    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-      Quem Somos
-    </NavigationMenuLink>
-  </Link>
-</NavigationMenuItem>
+            <Link href="/quem-somos" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Quem Somos
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
           <ModeToggle />
 
           <div className="flex space-x-4 md:hidden lg:hidden">

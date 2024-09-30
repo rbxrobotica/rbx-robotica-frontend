@@ -43,9 +43,9 @@ export default function Login() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-1/4 space-y-6 border border-foreground rounded-lg p-8"
+          className="max-w-md space-y-6 border border-foreground rounded-lg p-8"
         >
-          <p className="text-center font-bold text-xl">Entrar na conta</p>
+          <p className="text-center font-bold text-lg sm:text-xl">Entrar na conta</p>
           <FormField
             control={form.control}
             name="username"
