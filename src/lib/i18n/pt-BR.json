@@ -222,13 +222,14 @@
       },
       "free": {
         "name": "Free",
-        "tagline": "Consulta na área logada.",
-        "cta": "Criar acesso gratuito",
+        "badge": "Em breve",
+        "tagline": "Consulta na área logada, quando ela abrir.",
+        "cta": "Entrar na lista",
         "priceNote": "sem cobrança",
         "features": [
           "Leitura do briefing do dia na área logada",
-          "Histórico de edições para consulta e auditoria",
-          "Fontes públicas da Binance USD-M, somente leitura"
+          "Histórico de edições para consulta",
+          "Aviso por e-mail na abertura da área gratuita"
         ]
       },
       "pro": {
@@ -240,10 +241,12 @@
         "perMonth": "/mês",
         "billedMonthly": "cobrado mensalmente",
         "billedAnnually": "{total} cobrados anualmente",
-        "everythingInFree": "Tudo do Free, mais:",
+        "everythingInFree": "O que você recebe:",
         "features": [
           "Entrega no WhatsApp todo dia útil, até as 07h de Brasília",
-          "Os seis artefatos auditáveis de cada edição: flight-plan, snapshot, model-output, manifest, sources, execution-log",
+          "Leitura operacional do BTC/USDT Futuros: preço, RSI, médias, bandas, funding e open interest",
+          "Hipótese do dia e condições para não operar",
+          "Escrito em português do Brasil",
           "Cancele quando quiser"
         ]
       },
@@ -257,11 +260,11 @@
         "perSeat": "por assento",
         "total": "Total",
         "cta": "Continuar",
-        "everythingInPro": "Tudo do Pro, mais:",
+        "everythingInPro": "O que a equipe recebe:",
         "features": [
-          "Um assento por pessoa, cada uma com o próprio WhatsApp",
-          "Uma fatura para a equipe inteira",
-          "Administração central dos assentos"
+          "O Pro em cada assento, uma fatura para a equipe",
+          "Cada assento recebe no próprio WhatsApp; os números são cadastrados pela RBX após o pagamento",
+          "Trocas de assento por e-mail com o time"
         ],
         "moreSeats": "Mais de {max} assentos? Fale com o time pelo formulário de contato."
       },
@@ -277,7 +280,7 @@
         "phonePlaceholder": "+55 11 91234-5678",
         "company": "Empresa",
         "optional": "opcional",
-        "adminHint": "Você administra os assentos e recebe a fatura.",
+        "adminHint": "Você recebe a fatura. Os WhatsApp dos assentos são cadastrados após o pagamento.",
         "summary": "Resumo",
         "plan": "Plano",
         "cycle": "Cobrança",
@@ -295,27 +298,37 @@
         "invalidDoc": "Informe um CPF (11 dígitos) ou CNPJ (14 dígitos).",
         "invalidPhone": "Informe um número de WhatsApp com DDI e DDD.",
         "antiAbuse": "Confirme a verificação anti-robô antes de continuar.",
-        "legal": "Sem sinais de compra ou venda. Sem promessa de retorno. Cancele quando quiser."
+        "legal": "Sem sinais de compra ou venda. Sem promessa de retorno. Cancele quando quiser.",
+        "phoneNormalized": "Entrega em {phone}",
+        "invalidFields": "Verifique os campos e tente novamente.",
+        "providerFailed": "O provedor de pagamento não aceitou o pedido. Tente novamente ou fale com o time."
       },
       "done": {
         "title": "Confirmação",
         "paidRedirect": "Assinatura registrada. Redirecionando para o pagamento.",
-        "paidNoUrl": "Assinatura registrada. O link de pagamento chega por e-mail e WhatsApp em até um dia útil.",
-        "free": "Cadastro recebido. O acesso à área logada é liberado por e-mail em até um dia útil.",
-        "duplicate": "Este contato já tem uma assinatura ativa do Briefing BTC.",
+        "paidNoUrl": "Assinatura registrada. O link de pagamento chega por e-mail em até um dia útil.",
+        "free": "Cadastro recebido. Você recebe um e-mail quando a área gratuita abrir.",
+        "duplicate": "Este contato já tem uma assinatura ativa do Briefing BTC. Para alterar o plano, fale com o time.",
         "rateLimit": "Muitas tentativas a partir desta conexão. Tente novamente em uma hora.",
         "error": "Não foi possível concluir. Verifique os campos e tente novamente.",
+        "retry": "Tentar novamente",
         "close": "Fechar"
       },
       "summary": {
         "eyebrow": "Assinatura",
         "title": "Free ou Pro",
-        "body": "Free: consulta na área logada. Pro: entrega no WhatsApp todo dia útil, até as 07h.",
+        "body": "Free: consulta na área logada, em breve. Pro: entrega no WhatsApp todo dia útil, até as 07h.",
         "freeLabel": "Free",
+        "freeNote": "em breve",
         "proLabel": "Pro",
         "from": "a partir de",
         "perMonth": "/mês",
         "cta": "Ver planos e assinar"
+      },
+      "footer": {
+        "note": "Leitura operacional. Não são sinais, recomendação ou promessa de resultado.",
+        "governance": "Assinatura gerida pela RBX Systems. Cancelamento e reembolso:",
+        "legal": "Aviso Legal"
       }
     }
   }

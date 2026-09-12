@@ -14,6 +14,8 @@ import {
   currencyForLocale,
   findPlan,
   formatAmount,
+  formatPhoneDisplay,
+  normalizePhone,
   parseSubscribeParams,
   perMonthAmount,
   totalAmount
@@ -138,6 +140,22 @@ test('deep-link parameters open and preset the modal', () => {
     parseSubscribeParams(new URLSearchParams('audience=enterprise')).audience,
     'individual'
   );
+});
+
+test('WhatsApp numbers normalize to E.164 per locale', () => {
+  assert.equal(normalizePhone('11 91234-5678', 'pt-BR'), '+5511912345678');
+  assert.equal(normalizePhone('(11) 3123-4567', 'pt-BR'), '+551131234567');
+  assert.equal(normalizePhone('+55 11 91234-5678', 'pt-BR'), '+5511912345678');
+  assert.equal(normalizePhone('55 11 91234-5678', 'pt-BR'), '+5511912345678');
+  assert.equal(normalizePhone('+41 79 000 00 00', 'en'), '+41790000000');
+  assert.equal(normalizePhone('0041790000000', 'en'), '+41790000000');
+  assert.equal(normalizePhone('79 000 00 00', 'en'), null, 'en requires the country code');
+  assert.equal(normalizePhone('123', 'pt-BR'), null);
+  assert.equal(normalizePhone('', 'pt-BR'), null);
+  assert.equal(normalizePhone('+1 212 555 0100 999 999', 'en'), null, 'too long for E.164');
+  assert.equal(formatPhoneDisplay('+5511912345678'), '+55 11 91234-5678');
+  assert.equal(formatPhoneDisplay('+551131234567'), '+55 11 3123-4567');
+  assert.equal(formatPhoneDisplay('+41790000000'), '+41790000000');
 });
 
 function keyShape(value) {

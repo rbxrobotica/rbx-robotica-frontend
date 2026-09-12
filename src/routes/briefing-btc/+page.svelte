@@ -53,6 +53,7 @@
   bind:open={subscribeOpen}
   initialAudience={data.subscribe.audience}
   initialBilling={data.subscribe.billing}
+  deepLink={data.subscribe.open}
   source="briefing-btc-lp"
 />
 

@@ -222,13 +222,14 @@
       },
       "free": {
         "name": "Free",
-        "tagline": "Read it in the logged-in area.",
-        "cta": "Create free access",
+        "badge": "Coming soon",
+        "tagline": "Read it in the logged-in area, once it opens.",
+        "cta": "Join the list",
         "priceNote": "no charge",
         "features": [
           "Read the day's briefing in the logged-in area",
-          "Edition history for review and audit",
-          "Public Binance USD-M sources, read-only"
+          "Edition history for review",
+          "Email notice when the free area opens"
         ]
       },
       "pro": {
@@ -240,10 +241,12 @@
         "perMonth": "/mo",
         "billedMonthly": "billed monthly",
         "billedAnnually": "{total} billed annually",
-        "everythingInFree": "Everything in Free, plus:",
+        "everythingInFree": "What you get:",
         "features": [
           "WhatsApp delivery every business day, by 07h00 Brasília time",
-          "The six auditable artifacts of each edition: flight-plan, snapshot, model-output, manifest, sources, execution-log",
+          "Operational read of BTC/USDT futures: price, RSI, moving averages, bands, funding and open interest",
+          "Hypothesis of the day and conditions not to trade",
+          "Written in Brazilian Portuguese",
           "Cancel any time"
         ]
       },
@@ -257,11 +260,11 @@
         "perSeat": "per seat",
         "total": "Total",
         "cta": "Continue",
-        "everythingInPro": "Everything in Pro, plus:",
+        "everythingInPro": "What the team gets:",
         "features": [
-          "One seat per person, each with their own WhatsApp",
-          "One invoice for the whole team",
-          "Central seat administration"
+          "Pro on every seat, one invoice for the team",
+          "Each seat receives on its own WhatsApp; RBX registers the numbers after payment",
+          "Seat changes by email with the team"
         ],
         "moreSeats": "More than {max} seats? Talk to the team through the contact form."
       },
@@ -277,7 +280,7 @@
         "phonePlaceholder": "+41 79 000 00 00",
         "company": "Company",
         "optional": "optional",
-        "adminHint": "You administer the seats and receive the invoice.",
+        "adminHint": "You receive the invoice. Seat WhatsApp numbers are registered after payment.",
         "summary": "Summary",
         "plan": "Plan",
         "cycle": "Billing",
@@ -295,27 +298,37 @@
         "invalidDoc": "Enter a CPF (11 digits) or CNPJ (14 digits).",
         "invalidPhone": "Enter a WhatsApp number with country and area code.",
         "antiAbuse": "Complete the anti-robot check before continuing.",
-        "legal": "No buy or sell signals. No promise of returns. Cancel any time."
+        "legal": "No buy or sell signals. No promise of returns. Cancel any time.",
+        "phoneNormalized": "Delivery to {phone}",
+        "invalidFields": "Check the fields and try again.",
+        "providerFailed": "The payment provider did not accept the request. Try again or talk to the team."
       },
       "done": {
         "title": "Confirmation",
         "paidRedirect": "Subscription recorded. Redirecting to payment.",
-        "paidNoUrl": "Subscription recorded. The payment link arrives by email and WhatsApp within one business day.",
-        "free": "Registration received. Access to the logged-in area is granted by email within one business day.",
-        "duplicate": "This contact already holds an active Briefing BTC subscription.",
+        "paidNoUrl": "Subscription recorded. The payment link arrives by email within one business day.",
+        "free": "Registration received. You get an email when the free area opens.",
+        "duplicate": "This contact already holds an active Briefing BTC subscription. To change plans, talk to the team.",
         "rateLimit": "Too many attempts from this connection. Try again in one hour.",
         "error": "Could not complete. Check the fields and try again.",
+        "retry": "Try again",
         "close": "Close"
       },
       "summary": {
         "eyebrow": "Subscription",
         "title": "Free or Pro",
-        "body": "Free: read it in the logged-in area. Pro: WhatsApp delivery every business day, by 07h00.",
+        "body": "Free: read it in the logged-in area, coming soon. Pro: WhatsApp delivery every business day, by 07h00.",
         "freeLabel": "Free",
+        "freeNote": "coming soon",
         "proLabel": "Pro",
         "from": "from",
         "perMonth": "/mo",
         "cta": "See plans and subscribe"
+      },
+      "footer": {
+        "note": "Operational reading. Not signals, advice or a promise of results.",
+        "governance": "Subscription managed by RBX Systems. Cancellation and refunds:",
+        "legal": "Legal Notice"
       }
     }
   }

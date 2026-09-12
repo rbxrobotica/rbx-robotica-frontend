@@ -37,6 +37,15 @@ export const TEAM_MAX_SEATS = 50;
 export const MONTHLY_DISCOUNT_PCT = 40;
 export const ANNUAL_DISCOUNT_PCT = 50;
 
+/**
+ * Whether the cards show the list price struck through next to the discount
+ * chip (the DeepLearning.AI pattern the owner asked for). The list price is a
+ * reference price no cycle sells at, which the Zurich-coded LP rules read as
+ * an anchor; this single switch turns the anchor off and leaves only the real
+ * prices on screen if that decision changes.
+ */
+export const SHOW_LIST_PRICE = true;
+
 /** @type {Record<Currency, { monthlyList: number }>} list price per month, per currency */
 const LIST_PER_MONTH = {
   BRL: { monthlyList: 6500 },
@@ -178,4 +187,50 @@ export function parseSubscribeParams(params) {
     audience: audienceRaw === 'team' ? 'team' : 'individual',
     billing: billingRaw === 'monthly' ? 'monthly' : 'annual'
   };
+}
+
+/**
+ * Normalize a typed WhatsApp number to E.164 for the site locale.
+ *
+ * pt-BR: a Brazilian number typed without the country code (10 or 11 digits,
+ * area code plus 8 or 9 digits) gets 55 prepended; the server would otherwise
+ * store "+11 9..." as if it were a North American number and the subscriber
+ * would never receive a delivery. en: the country code must be typed (a
+ * leading "+" or 00), since no single default fits an international site.
+ * Returns null when the number cannot be a valid E.164 number.
+ * @param {string} raw
+ * @param {Locale} locale
+ * @returns {string | null}
+ */
+export function normalizePhone(raw, locale) {
+  const trimmed = String(raw ?? '').trim();
+  const explicitCountry = trimmed.startsWith('+') || trimmed.startsWith('00');
+  let digits = trimmed.replace(/\D/g, '');
+  if (trimmed.startsWith('00')) digits = digits.replace(/^00/, '');
+  if (digits.length === 0) return null;
+  if (!explicitCountry && locale === 'pt-BR') {
+    if (digits.length === 10 || digits.length === 11) digits = `55${digits}`;
+    else if (!(digits.length >= 12 && digits.length <= 13 && digits.startsWith('55'))) return null;
+  } else if (!explicitCountry) {
+    return null;
+  }
+  if (digits.length < 10 || digits.length > 15) return null;
+  return `+${digits}`;
+}
+
+/**
+ * Display form of an E.164 number: Brazilian numbers as +55 11 91234-5678,
+ * everything else grouped in blocks of three after the country code guess.
+ * @param {string} e164
+ * @returns {string}
+ */
+export function formatPhoneDisplay(e164) {
+  const digits = String(e164 ?? '').replace(/\D/g, '');
+  if (digits.startsWith('55') && (digits.length === 12 || digits.length === 13)) {
+    const area = digits.slice(2, 4);
+    const local = digits.slice(4);
+    const split = local.length - 4;
+    return `+55 ${area} ${local.slice(0, split)}-${local.slice(split)}`;
+  }
+  return `+${digits}`;
 }

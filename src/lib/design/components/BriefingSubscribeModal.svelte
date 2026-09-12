@@ -15,13 +15,18 @@
     AUDIENCE_TOGGLE
   } from '$lib/analytics/events';
   import { getAttributionPayload } from '$lib/analytics/utm';
+  import { browser } from '$app/environment';
+  import { replaceState } from '$app/navigation';
   import {
+    SHOW_LIST_PRICE,
     TEAM_MIN_SEATS,
     TEAM_MAX_SEATS,
     clampSeats,
     currencyForLocale,
     findPlan,
     formatAmount,
+    formatPhoneDisplay,
+    normalizePhone,
     perMonthAmount,
     totalAmount
   } from '$lib/briefing/catalog.js';
@@ -37,9 +42,11 @@
     | 'duplicate'
     | 'rate-limit'
     | 'error'
+    | 'invalid-fields'
     | 'invalid-doc'
     | 'invalid-phone'
     | 'anti-abuse'
+    | 'provider-failed'
     | null;
 
   interface Props {
@@ -50,6 +57,8 @@
     initialBilling?: Billing;
     /** Attribution source recorded on the checkout and on analytics events. */
     source?: string;
+    /** True when the page opened the modal from a ?subscribe=1 deep link. */
+    deepLink?: boolean;
     onclose?: () => void;
   }
 
@@ -59,8 +68,13 @@
     initialAudience = 'individual',
     initialBilling = 'annual',
     source = 'briefing-btc-modal',
+    deepLink = false,
     onclose
   }: Props = $props();
+
+  // The first open of a deep-linked page is attributed to the URL; every
+  // later open comes from a CTA on the page.
+  let firstOpen = true;
 
   // Selection state. Initial values come from props once (deep links); after
   // that the modal owns them, which is why they are read under untrack.
@@ -93,6 +107,8 @@
   const selectedPlan = $derived(tier === 'team' ? teamPlan : tier === 'pro' ? proPlan : null);
   const total = $derived(selectedPlan ? totalAmount(selectedPlan, seats) : 0);
   const busy = $derived(status === 'submitting' || status === 'redirecting');
+  const normalizedPhone = $derived(normalizePhone(phone, locale));
+  const phoneDisplay = $derived(normalizedPhone ? formatPhoneDisplay(normalizedPhone) : '');
   const steps = $derived(tl(locale, 'briefing.subscribe.steps'));
 
   const tr = (key: string) => t(locale, `briefing.subscribe.${key}`);
@@ -151,7 +167,13 @@
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     queueMicrotask(() => dialogEl?.focus());
-    trackEvent(SUBSCRIBE_OPEN, { source, audience, billing });
+    trackEvent(SUBSCRIBE_OPEN, {
+      source,
+      audience,
+      billing,
+      entry: firstOpen && deepLink ? 'url' : 'cta'
+    });
+    firstOpen = false;
     return () => {
       document.body.style.overflow = previousOverflow;
       opener?.focus?.();
@@ -162,7 +184,36 @@
     if (busy) return;
     open = false;
     if (status === 'done') reset();
+    stripDeepLink();
     onclose?.();
+  }
+
+  // Once closed, a reload must not reopen the modal: drop the deep-link
+  // parameters from the address bar without a navigation.
+  function stripDeepLink() {
+    if (!browser) return;
+    const url = new URL(window.location.href);
+    const keys = ['subscribe', 'assinar', 'audience', 'billing'];
+    if (!keys.some((k) => url.searchParams.has(k))) return;
+    for (const k of keys) url.searchParams.delete(k);
+    replaceState(url, {});
+  }
+
+  // Coming back from the payment page with the browser's back button restores
+  // the page from the bfcache, still frozen in the redirecting state.
+  function onPageShow(e: PageTransitionEvent) {
+    if (!e.persisted || status !== 'redirecting') return;
+    status = 'idle';
+    step = 2;
+    outcome = null;
+    resetAntiAbuse();
+  }
+
+  // Altcha payloads are single-use: after any server round trip the visitor
+  // has to verify again.
+  function resetAntiAbuse() {
+    altchaWidget?.reset();
+    altchaPayload = null;
   }
 
   function reset() {
@@ -253,8 +304,7 @@
   function validate(): Problem {
     if (tier !== 'free') {
       if (isBRL && ![11, 14].includes(digits(doc).length)) return 'invalid-doc';
-      const phoneDigits = digits(phone).length;
-      if (phoneDigits < 10 || phoneDigits > 15) return 'invalid-phone';
+      if (!normalizedPhone) return 'invalid-phone';
     }
     const payload = altchaWidget?.getValue() ?? altchaPayload;
     if (!payload) return 'anti-abuse';
@@ -290,6 +340,7 @@
     } catch (err) {
       status = 'idle';
       problem = err instanceof CheckoutError ? err.problem : 'error';
+      resetAntiAbuse();
       trackEvent(FORM_ERROR, { source, offer, reason: problem ?? 'error' });
     }
   }
@@ -320,7 +371,9 @@
         language: t(locale, 'common.languageCode')
       })
     });
+    if (res.status === 403) throw new CheckoutError('anti-abuse');
     if (res.status === 429) throw new CheckoutError('rate-limit');
+    if (res.status === 400) throw new CheckoutError('invalid-fields');
     if (!res.ok) throw new CheckoutError('error');
   }
 
@@ -331,7 +384,7 @@
       plan_id: plan.id,
       customer_name: name,
       customer_email: email,
-      customer_phone: phone,
+      customer_phone: normalizedPhone,
       altcha,
       website,
       source,
@@ -349,12 +402,18 @@
     });
     if (res.status === 409) throw new CheckoutError('duplicate');
     if (res.status === 429) throw new CheckoutError('rate-limit');
+    if (res.status === 403) throw new CheckoutError('anti-abuse');
+    if (res.status === 400) throw new CheckoutError('invalid-fields');
     if (!res.ok) throw new CheckoutError('error');
-    const data = (await res.json()) as { checkout_url?: string };
+    const data = (await res.json()) as { checkout_url?: string; provisioning?: string };
     if (data.checkout_url) {
       window.location.assign(data.checkout_url);
       return 'paid-redirect';
     }
+    // The provider refused the request: the subscription exists locally but
+    // no invoice was produced, so the visitor is told to try again rather
+    // than to wait for a link that will not come.
+    if (data.provisioning === 'failed') throw new CheckoutError('provider-failed');
     return 'paid-no-url';
   }
 
@@ -369,9 +428,13 @@
             ? tr('details.invalidPhone')
             : problem === 'anti-abuse'
               ? tr('details.antiAbuse')
-              : problem === 'error'
-                ? tr('done.error')
-                : ''
+              : problem === 'invalid-fields'
+                ? tr('details.invalidFields')
+                : problem === 'provider-failed'
+                  ? tr('details.providerFailed')
+                  : problem === 'error'
+                    ? tr('done.error')
+                    : ''
   );
 
   const doneText = $derived(
@@ -393,7 +456,7 @@
   );
 </script>
 
-<svelte:window onkeydown={onKeydown} />
+<svelte:window onkeydown={onKeydown} onpageshow={onPageShow} />
 
 {#if open}
   <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -492,6 +555,7 @@
           {#if audience === 'individual'}
             <div class="cards">
               <article class="card" aria-labelledby="bsm-free-name">
+                <span class="badge neutral">{tr('free.badge')}</span>
                 <div class="card-head">
                   <h3 id="bsm-free-name">{tr('free.name')}</h3>
                   <p class="tagline">{tr('free.tagline')}</p>
@@ -534,9 +598,11 @@
                 </div>
                 <div class="price">
                   <div class="list-row">
-                    <span class="list-price"
-                      ><span class="sr-only">{tr('pro.listLabel')}: </span>{monthlyListLabel}</span
-                    >
+                    {#if SHOW_LIST_PRICE}
+                      <s class="list-price"
+                        ><span class="sr-only">{tr('pro.listLabel')}: </span>{monthlyListLabel}</s
+                      >
+                    {/if}
                     <span class="chip discount">{discountBadge}</span>
                   </div>
                   <div class="amount">
@@ -634,10 +700,12 @@
 
                 <div class="price">
                   <div class="list-row">
-                    <span class="list-price"
-                      ><span class="sr-only">{tr('pro.listLabel')}: </span>{monthlyListLabel}
-                      {tr('team.perSeat')}</span
-                    >
+                    {#if SHOW_LIST_PRICE}
+                      <s class="list-price"
+                        ><span class="sr-only">{tr('pro.listLabel')}: </span>{monthlyListLabel}
+                        {tr('team.perSeat')}</s
+                      >
+                    {/if}
                     <span class="chip discount">{discountBadge}</span>
                   </div>
                   <div class="amount">
@@ -688,7 +756,10 @@
             </p>
           {/if}
         {:else if step === 2}
-          <form class="details" class:pending={busy} onsubmit={submit} novalidate>
+          <form class="details" class:pending={busy} aria-busy={busy} onsubmit={submit} novalidate>
+            <p class="sr-only" role="status" aria-live="polite">
+              {busy ? tr('details.submitting') : ''}
+            </p>
             <div class="honeypot" aria-hidden="true">
               <label for="bsm-website">Website</label>
               <input
@@ -744,7 +815,13 @@
                       placeholder={tr('details.phonePlaceholder')}
                       bind:value={phone}
                     />
-                    <span class="hint">{tr('details.phoneHint')}</span>
+                    <span class="hint">
+                      {#if phoneDisplay}
+                        {fill(tr('details.phoneNormalized'), { phone: phoneDisplay })}
+                      {:else}
+                        {tr('details.phoneHint')}
+                      {/if}
+                    </span>
                   </div>
                 </div>
               {/if}
@@ -800,6 +877,12 @@
                     <dt>{tr('details.method')}</dt>
                     <dd>{isBRL ? tr('details.methodPix') : tr('details.methodCard')}</dd>
                   </div>
+                  {#if phoneDisplay}
+                    <div>
+                      <dt>{tr('details.phone')}</dt>
+                      <dd class="mono">{phoneDisplay}</dd>
+                    </div>
+                  {/if}
                   <div class="total">
                     <dt>{tr('team.total')}</dt>
                     <dd class="mono">{fmt(total)}</dd>
@@ -829,7 +912,9 @@
             </div>
 
             {#if problem}
-              <div class="error" role="alert">{problemText}</div>
+              {#key problem}
+                <div class="error" role="alert">{problemText}</div>
+              {/key}
             {/if}
 
             <div class="actions">
@@ -872,6 +957,11 @@
           </div>
         {/if}
       </div>
+
+      <footer class="foot">
+        <span>{tr('footer.note')}</span>
+        <span>{tr('footer.governance')} <a href="/legal">{tr('footer.legal')}</a></span>
+      </footer>
     </div>
   </div>
 {/if}
@@ -1142,6 +1232,29 @@
     background: linear-gradient(180deg, rgba(0, 255, 255, 0.05), transparent 40%), var(--bg-2);
   }
 
+  .badge.neutral {
+    border-color: var(--border-strong);
+    color: var(--fg-2);
+  }
+
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--s-2) var(--s-4);
+    padding: var(--s-3) var(--s-6);
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--track-wide);
+    color: var(--fg-2);
+  }
+
+  .foot a {
+    color: var(--fg-1);
+    border-bottom-color: var(--border-strong);
+  }
+
   .badge {
     position: absolute;
     top: calc(-1 * var(--s-3));
@@ -1194,6 +1307,7 @@
     font-size: var(--text-sm);
     color: var(--fg-3);
     text-decoration: line-through;
+    text-decoration-color: var(--fg-2);
     font-variant-numeric: tabular-nums;
   }
 
@@ -1728,6 +1842,9 @@
     }
     .stepper {
       padding: 0 var(--s-4);
+    }
+    .foot {
+      padding: var(--s-3) var(--s-4);
     }
     .stepper .label {
       display: none;

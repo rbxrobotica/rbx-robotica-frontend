@@ -38,7 +38,7 @@
   <dl class="rows">
     <div>
       <dt>{tr('summary.freeLabel')}</dt>
-      <dd>{freePrice}</dd>
+      <dd>{freePrice} <span class="from">{tr('summary.freeNote')}</span></dd>
     </div>
     <div>
       <dt>{tr('summary.proLabel')}</dt>
