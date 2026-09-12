@@ -812,7 +812,7 @@ The Daily BTC Briefing is sold as Free (no charge, reading in the logged-in area
 
 - Cancellation can be requested at any time through the contact channels above or the support email given in the confirmation. There is no penalty or minimum term.
 - Monthly plan: cancellation stops the renewal; access and delivery continue until the end of the period already paid.
-- Annual plan: a full refund is available if you cancel within 14 days of the first payment. After that, cancellation stops the renewal and keeps access until the end of the paid period, without a pro-rata refund.
+- Annual plan: a full refund is available if you cancel within 7 days of the first payment. After that, cancellation stops the renewal and keeps access until the end of the paid period, without a pro-rata refund.
 - Refunds are made through the original payment method within 10 business days of confirming the request.
 - Price changes apply only to future periods and are announced by email at least 30 days in advance.
 
