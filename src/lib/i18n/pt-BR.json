@@ -197,6 +197,126 @@
   },
   "briefing": {
     "headline": "Briefing Diário BTC",
-    "body": "Leitura operacional diária do mercado BTC Futuros. Às 07h todo dia útil. Não são sinais. Não é recomendação."
+    "body": "Leitura operacional diária do mercado BTC Futuros. Às 07h todo dia útil. Não são sinais. Não é recomendação.",
+    "subscribe": {
+      "eyebrow": "Briefing Diário BTC · Assinatura",
+      "title": "Escolha seu plano",
+      "teamTitle": "Configure sua equipe",
+      "close": "Fechar assinatura",
+      "steps": ["Plano", "Dados", "Confirmação"],
+      "stepLabel": "Etapa",
+      "audience": {
+        "label": "Para quem",
+        "individual": "Individual",
+        "team": "Equipe",
+        "teamHint": "Assinando para mais pessoas?",
+        "teamLink": "Plano para equipes",
+        "backToIndividual": "Voltar ao plano individual"
+      },
+      "billing": {
+        "label": "Cobrança",
+        "monthly": "Mensal",
+        "annual": "Anual",
+        "monthlyBadge": "40% de desconto",
+        "annualBadge": "50% de desconto"
+      },
+      "free": {
+        "name": "Free",
+        "tagline": "Consulta na área logada.",
+        "cta": "Criar acesso gratuito",
+        "priceNote": "sem cobrança",
+        "features": [
+          "Leitura do briefing do dia na área logada",
+          "Histórico de edições para consulta e auditoria",
+          "Fontes públicas da Binance USD-M, somente leitura"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "badge": "Melhor valor",
+        "tagline": "Recebido no seu WhatsApp todo dia útil.",
+        "cta": "Assinar Pro",
+        "listLabel": "Preço de tabela",
+        "perMonth": "/mês",
+        "billedMonthly": "cobrado mensalmente",
+        "billedAnnually": "{total} cobrados anualmente",
+        "everythingInFree": "Tudo do Free, mais:",
+        "features": [
+          "Entrega no WhatsApp todo dia útil, até as 07h de Brasília",
+          "Os seis artefatos auditáveis de cada edição: flight-plan, snapshot, model-output, manifest, sources, execution-log",
+          "Cancele quando quiser"
+        ]
+      },
+      "team": {
+        "name": "Equipe",
+        "tagline": "Pro para cada assento, uma fatura.",
+        "seatsLabel": "Assentos",
+        "seatsHint": "De {min} a {max} assentos",
+        "decrease": "Um assento a menos",
+        "increase": "Um assento a mais",
+        "perSeat": "por assento",
+        "total": "Total",
+        "cta": "Continuar",
+        "everythingInPro": "Tudo do Pro, mais:",
+        "features": [
+          "Um assento por pessoa, cada uma com o próprio WhatsApp",
+          "Uma fatura para a equipe inteira",
+          "Administração central dos assentos"
+        ],
+        "moreSeats": "Mais de {max} assentos? Fale com o time pelo formulário de contato."
+      },
+      "details": {
+        "title": "Seus dados",
+        "freeTitle": "Acesso gratuito",
+        "name": "Nome completo",
+        "email": "E-mail",
+        "doc": "CPF ou CNPJ",
+        "docHint": "Necessário para a cobrança via Pix",
+        "phone": "WhatsApp",
+        "phoneHint": "Número que recebe o briefing",
+        "phonePlaceholder": "+55 11 91234-5678",
+        "company": "Empresa",
+        "optional": "opcional",
+        "adminHint": "Você administra os assentos e recebe a fatura.",
+        "summary": "Resumo",
+        "plan": "Plano",
+        "cycle": "Cobrança",
+        "seats": "Assentos",
+        "method": "Pagamento",
+        "methodPix": "Pix, via Asaas",
+        "methodCard": "Cartão, link enviado por e-mail",
+        "cycleMonthly": "Mensal",
+        "cycleAnnual": "Anual",
+        "submitPay": "Ir para pagamento",
+        "submitRequestLink": "Solicitar link de pagamento",
+        "submitFree": "Criar acesso gratuito",
+        "submitting": "Enviando...",
+        "back": "Voltar",
+        "invalidDoc": "Informe um CPF (11 dígitos) ou CNPJ (14 dígitos).",
+        "invalidPhone": "Informe um número de WhatsApp com DDI e DDD.",
+        "antiAbuse": "Confirme a verificação anti-robô antes de continuar.",
+        "legal": "Sem sinais de compra ou venda. Sem promessa de retorno. Cancele quando quiser."
+      },
+      "done": {
+        "title": "Confirmação",
+        "paidRedirect": "Assinatura registrada. Redirecionando para o pagamento.",
+        "paidNoUrl": "Assinatura registrada. O link de pagamento chega por e-mail e WhatsApp em até um dia útil.",
+        "free": "Cadastro recebido. O acesso à área logada é liberado por e-mail em até um dia útil.",
+        "duplicate": "Este contato já tem uma assinatura ativa do Briefing BTC.",
+        "rateLimit": "Muitas tentativas a partir desta conexão. Tente novamente em uma hora.",
+        "error": "Não foi possível concluir. Verifique os campos e tente novamente.",
+        "close": "Fechar"
+      },
+      "summary": {
+        "eyebrow": "Assinatura",
+        "title": "Free ou Pro",
+        "body": "Free: consulta na área logada. Pro: entrega no WhatsApp todo dia útil, até as 07h.",
+        "freeLabel": "Free",
+        "proLabel": "Pro",
+        "from": "a partir de",
+        "perMonth": "/mês",
+        "cta": "Ver planos e assinar"
+      }
+    }
   }
 }

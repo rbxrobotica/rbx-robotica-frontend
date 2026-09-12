@@ -40,10 +40,12 @@ test('the three Robson product identities remain distinct', () => {
 test('Briefing Diário BTC facts and boundaries are pinned', () => {
   assert.match(route, /Briefing Diário BTC \(also called Briefing BTC\)/);
   assert.match(route, /delivered via WhatsApp every weekday by 07:00 Brasília time/);
+  assert.match(route, /Free at R\$ 0 \(reading in the logged-in area, no WhatsApp delivery\)/);
   assert.match(
     route,
-    /Briefing Diário BTC at R\$ 39 per month via Pix, and Briefing Mensal BTC at R\$ 299 per month by card/
+    /Pro with WhatsApp delivery at R\$ 39 per month billed monthly or R\$ 390 per year billed annually \(R\$ 32,50 per month\), via Pix on rbx\.ia\.br, and \$12 per month or \$120 per year by card on rbxsystems\.ch/
   );
+  assert.match(route, /Team plans charge the Pro per-seat price for 2 to 50 seats on one invoice/);
   assert.match(route, /State these prices only when the visitor asks about Briefing BTC/);
   assert.match(
     route,

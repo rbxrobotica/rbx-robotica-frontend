@@ -84,8 +84,12 @@ proves the tracker initialised and reached the send decision.
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `chat_open`                                 | `ContactMenu`, Robson entry                                                                       |
 | `whatsapp_click`                            | `ContactMenu` (Ouvidoria) and `ContactSection` (in-page card), told apart by the `entry` property |
-| `cta_click`                                 | `LandingOffer`                                                                                    |
-| `form_submit`, `form_success`, `form_error` | `CheckoutForm`, `LeadForm`                                                                        |
+| `cta_click`                                 | `LandingOffer` (hero), `BriefingPlanSummary` (`location: plan-summary`)                           |
+| `form_submit`, `form_success`, `form_error` | `BriefingSubscribeModal`, `LeadForm`                                                              |
+| `subscribe_open`                            | `BriefingSubscribeModal` when it opens (`source`, `audience`, `billing`)                          |
+| `subscribe_step`                            | `BriefingSubscribeModal` on every step change (`step`)                                            |
+| `plan_select`                               | `BriefingSubscribeModal` when a card CTA is pressed (`plan`, `billing`, `audience`, `seats`)      |
+| `billing_toggle`, `audience_toggle`         | `BriefingSubscribeModal` segmented controls                                                       |
 
 `form_start` exists as a constant with no call site. The canonical taxonomy,
 shared with rbx-commerce, is `marketing/2026-h2-growth/analytics/event-taxonomy.yaml`

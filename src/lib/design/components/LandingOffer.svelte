@@ -17,6 +17,9 @@
     // page can offer a real checkout instead of (or alongside) a lead form.
     // Undefined by default: every other LandingOffer-based LP is unaffected.
     checkout?: import('svelte').Snippet;
+    // Optional. When provided, the hero CTA becomes a button that calls it
+    // (e.g. to open a subscription modal) instead of scrolling to the form.
+    onCta?: () => void;
   }
 
   let {
@@ -29,7 +32,8 @@
     ctaKey,
     formTitleKey,
     children,
-    checkout
+    checkout,
+    onCta
   }: Props = $props();
 
   const tr = (key: string) => t(dictionary, key);
@@ -75,9 +79,22 @@
       {@render children()}
     {/if}
 
-    <a href="#lead-form" class="rbx-cta cta-primary" onclick={() => trackCta('hero')}>
-      {tr(ctaKey)}
-    </a>
+    {#if onCta}
+      <button
+        type="button"
+        class="rbx-cta cta-primary"
+        onclick={() => {
+          trackCta('hero');
+          onCta();
+        }}
+      >
+        {tr(ctaKey)}
+      </button>
+    {:else}
+      <a href="#lead-form" class="rbx-cta cta-primary" onclick={() => trackCta('hero')}>
+        {tr(ctaKey)}
+      </a>
+    {/if}
   </div>
 
   <div class="form-card" id="lead-form">
@@ -164,6 +181,7 @@
   .cta-primary {
     align-self: flex-start;
     margin-top: var(--s-2);
+    cursor: pointer;
   }
 
   .form-card {
