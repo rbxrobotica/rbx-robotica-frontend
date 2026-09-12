@@ -266,7 +266,9 @@
           "Each seat receives on its own WhatsApp; RBX registers the numbers after payment",
           "Seat changes by email with the team"
         ],
-        "moreSeats": "More than {max} seats? Talk to the team through the contact form."
+        "moreSeats": "More than {max} seats? Talk to the team through the contact form.",
+        "billedAnnually": "billed annually",
+        "billedMonthly": "billed monthly"
       },
       "details": {
         "title": "Your details",
@@ -301,7 +303,9 @@
         "legal": "No buy or sell signals. No promise of returns. Cancel any time.",
         "phoneNormalized": "Delivery to {phone}",
         "invalidFields": "Check the fields and try again.",
-        "providerFailed": "The payment provider did not accept the request. Try again or talk to the team."
+        "providerFailed": "The payment provider did not accept the request. Try again or talk to the team.",
+        "invalidEmail": "Enter a valid email address.",
+        "invalidName": "Enter your full name."
       },
       "done": {
         "title": "Confirmation",

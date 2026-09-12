@@ -43,6 +43,8 @@
     | 'rate-limit'
     | 'error'
     | 'invalid-fields'
+    | 'invalid-name'
+    | 'invalid-email'
     | 'invalid-doc'
     | 'invalid-phone'
     | 'anti-abuse'
@@ -183,7 +185,15 @@
   function close() {
     if (busy) return;
     open = false;
+    // Every reopen starts at the plan chooser with a fresh anti-abuse token
+    // (payloads are single use); typed details are kept as a convenience.
     if (status === 'done') reset();
+    else {
+      step = 1;
+      status = 'idle';
+      problem = null;
+      resetAntiAbuse();
+    }
     stripDeepLink();
     onclose?.();
   }
@@ -301,7 +311,19 @@
     return value.replace(/\D/g, '');
   }
 
+  const emailRE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Which field a validation problem points at, so focus can move there.
+  const problemField: Partial<Record<NonNullable<Problem>, string>> = {
+    'invalid-name': 'bsm-name',
+    'invalid-email': 'bsm-email',
+    'invalid-doc': 'bsm-doc',
+    'invalid-phone': 'bsm-phone'
+  };
+
   function validate(): Problem {
+    if (name.trim().length < 2) return 'invalid-name';
+    if (!emailRE.test(email.trim())) return 'invalid-email';
     if (tier !== 'free') {
       if (isBRL && ![11, 14].includes(digits(doc).length)) return 'invalid-doc';
       if (!normalizedPhone) return 'invalid-phone';
@@ -311,11 +333,20 @@
     return null;
   }
 
+  function focusProblem(p: Problem) {
+    const id = p ? problemField[p] : undefined;
+    if (!id) return;
+    queueMicrotask(() => document.getElementById(id)?.focus());
+  }
+
   async function submit(ev: SubmitEvent) {
     ev.preventDefault();
     if (busy) return;
     problem = validate();
-    if (problem) return;
+    if (problem) {
+      focusProblem(problem);
+      return;
+    }
 
     const payload = altchaWidget?.getValue() ?? altchaPayload ?? '';
     const offer = tier === 'free' ? 'free' : (selectedPlan?.id ?? tier);
@@ -422,19 +453,23 @@
       ? tr('done.duplicate')
       : problem === 'rate-limit'
         ? tr('done.rateLimit')
-        : problem === 'invalid-doc'
-          ? tr('details.invalidDoc')
-          : problem === 'invalid-phone'
-            ? tr('details.invalidPhone')
-            : problem === 'anti-abuse'
-              ? tr('details.antiAbuse')
-              : problem === 'invalid-fields'
-                ? tr('details.invalidFields')
-                : problem === 'provider-failed'
-                  ? tr('details.providerFailed')
-                  : problem === 'error'
-                    ? tr('done.error')
-                    : ''
+        : problem === 'invalid-name'
+          ? tr('details.invalidName')
+          : problem === 'invalid-email'
+            ? tr('details.invalidEmail')
+            : problem === 'invalid-doc'
+              ? tr('details.invalidDoc')
+              : problem === 'invalid-phone'
+                ? tr('details.invalidPhone')
+                : problem === 'anti-abuse'
+                  ? tr('details.antiAbuse')
+                  : problem === 'invalid-fields'
+                    ? tr('details.invalidFields')
+                    : problem === 'provider-failed'
+                      ? tr('details.providerFailed')
+                      : problem === 'error'
+                        ? tr('done.error')
+                        : ''
   );
 
   const doneText = $derived(
@@ -717,8 +752,8 @@
                     <span class="total-value">{fmt(totalAmount(teamPlan, seats))}</span>
                     <span class="billed"
                       >{billing === 'annual'
-                        ? tr('pro.billedAnnually').replace('{total} ', '')
-                        : tr('pro.billedMonthly')}</span
+                        ? tr('team.billedAnnually')
+                        : tr('team.billedMonthly')}</span
                     >
                   </div>
                 </div>
@@ -775,7 +810,14 @@
               <div class="row">
                 <div class="field">
                   <label for="bsm-name">{tr('details.name')} *</label>
-                  <input id="bsm-name" type="text" required autocomplete="name" bind:value={name} />
+                  <input
+                    id="bsm-name"
+                    type="text"
+                    required
+                    autocomplete="name"
+                    aria-invalid={problem === 'invalid-name' ? 'true' : undefined}
+                    bind:value={name}
+                  />
                 </div>
                 <div class="field">
                   <label for="bsm-email">{tr('details.email')} *</label>
@@ -784,6 +826,7 @@
                     type="email"
                     required
                     autocomplete="email"
+                    aria-invalid={problem === 'invalid-email' ? 'true' : undefined}
                     bind:value={email}
                   />
                 </div>
