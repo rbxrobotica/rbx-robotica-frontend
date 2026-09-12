@@ -763,13 +763,23 @@ Robson e o Briefing Diário BTC são produtos de tecnologia e informação. Nada
 
 Estes sites usam medição de audiência sem cookies (Plausible, operado em infraestrutura própria). Parâmetros de origem de campanha (UTM) são guardados no navegador e acompanham o pedido de assinatura para atribuição. No checkout do Briefing Diário BTC, nome, e-mail, WhatsApp e CPF ou CNPJ são coletados para execução do contrato e processados pelo provedor de pagamento. Mensagens enviadas ao assistente do site são processadas por um provedor de modelo de linguagem para gerar a resposta e registradas para auditoria de qualidade. Dados do formulário de contato são usados para responder à solicitação. Não vendemos dados pessoais. Pedidos de acesso, correção ou exclusão podem ser feitos pelos canais de contato acima, conforme o artigo 18 da Lei 13.709/2018 (LGPD). Este aviso resume os fluxos de dados atuais destes sites.
 
+## Assinaturas, cancelamento e reembolso
+
+O Briefing Diário BTC é vendido em planos Free (sem cobrança, leitura na área logada), Pro e Equipe (entrega por WhatsApp), com cobrança mensal ou anual. No Brasil o pagamento é por Pix, processado pela Asaas; no site internacional, em USDT pelo BTCPay Server operado pela RBX ou por cartão pela Payrexx.
+
+- O cancelamento pode ser pedido a qualquer momento pelos canais de contato acima ou pelo e-mail de suporte informado na confirmação. Não há multa nem fidelidade.
+- Plano mensal: o cancelamento encerra a renovação; o acesso e a entrega seguem até o fim do período já pago.
+- Plano anual: compras feitas pelo site têm direito de arrependimento em 7 dias corridos a partir do pagamento, com reembolso integral (artigo 49 do Código de Defesa do Consumidor). Depois desse prazo, o cancelamento encerra a renovação e mantém o acesso até o fim do período pago, sem reembolso proporcional.
+- Reembolsos são feitos pelo mesmo meio de pagamento em até 10 dias úteis após a confirmação do pedido.
+- Alterações de preço valem apenas para períodos futuros e são comunicadas por e-mail com pelo menos 30 dias de antecedência.
+
 ## Sem garantias
 
 O conteúdo é publicado no estado em que se encontra, sem garantia de exatidão, completude ou adequação a um propósito específico. A RBX Systems pode alterar ou remover conteúdo sem aviso prévio.
 
 ## Alterações
 
-Este aviso pode ser atualizado. Versão de 12 de agosto de 2026.
+Este aviso pode ser atualizado. Versão de 12 de setembro de 2026.
 `,
   `---
 title: Legal Notice
@@ -796,13 +806,23 @@ Robson and the Briefing Diário BTC are technology and information products. Not
 
 These websites use cookieless audience measurement (Plausible, operated on our own infrastructure). Campaign origin parameters (UTM) are stored in the browser and accompany the subscription order for attribution. The Briefing Diário BTC checkout collects name, email, WhatsApp number and Brazilian tax id (CPF or CNPJ) for contract execution, processed by the payment provider. Messages sent to the site assistant are processed by a language-model provider to generate the reply and recorded for quality audit. Contact form data is used to answer the request. We do not sell personal data. Requests for access, correction or deletion can be made through the contact channels above, under applicable data protection law, including Article 18 of the Brazilian LGPD (Law 13.709/2018). This notice summarizes the current data flows of these websites.
 
+## Subscriptions, cancellation and refunds
+
+The Daily BTC Briefing is sold as Free (no charge, reading in the logged-in area), Pro and Team plans (WhatsApp delivery), billed monthly or annually. On the international site payment is in USDT through the BTCPay Server operated by RBX or by card through Payrexx; in Brazil by Pix, processed by Asaas.
+
+- Cancellation can be requested at any time through the contact channels above or the support email given in the confirmation. There is no penalty or minimum term.
+- Monthly plan: cancellation stops the renewal; access and delivery continue until the end of the period already paid.
+- Annual plan: a full refund is available if you cancel within 14 days of the first payment. After that, cancellation stops the renewal and keeps access until the end of the paid period, without a pro-rata refund.
+- Refunds are made through the original payment method within 10 business days of confirming the request.
+- Price changes apply only to future periods and are announced by email at least 30 days in advance.
+
 ## No warranties
 
 Content is published as is, without warranty of accuracy, completeness or fitness for a particular purpose. RBX Systems may change or remove content without prior notice.
 
 ## Changes
 
-This notice may be updated. Version of 2026-08-12.
+This notice may be updated. Version of 2026-09-12.
 `
 );
 

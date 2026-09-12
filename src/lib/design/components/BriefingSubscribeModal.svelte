@@ -2,7 +2,6 @@
   import { untrack } from 'svelte';
   import { t, tl } from '$lib/i18n/translate';
   import { getCommerceBaseUrl } from '$lib/api/commerce';
-  import { getCommsBaseUrl } from '$lib/api/comms';
   import {
     trackEvent,
     FORM_SUBMIT,
@@ -18,6 +17,8 @@
   import { browser } from '$app/environment';
   import { replaceState } from '$app/navigation';
   import {
+    BRIEFING_HUB_URL,
+    PAYMENT_METHODS,
     SHOW_LIST_PRICE,
     TEAM_MIN_SEATS,
     TEAM_MAX_SEATS,
@@ -30,14 +31,14 @@
     perMonthAmount,
     totalAmount
   } from '$lib/briefing/catalog.js';
-  import type { Audience, Billing } from '$lib/briefing/catalog.js';
+  import type { Audience, Billing, PaymentMethod } from '$lib/briefing/catalog.js';
   import AltchaWidget from './AltchaWidget.svelte';
   import type { Locale } from '$types/content';
 
   type Tier = 'free' | 'pro' | 'team';
   type Step = 1 | 2 | 3;
   type Status = 'idle' | 'submitting' | 'redirecting' | 'done';
-  type Outcome = 'paid-redirect' | 'paid-no-url' | 'free' | null;
+  type Outcome = 'paid-redirect' | 'paid-no-url' | null;
   type Problem =
     | 'duplicate'
     | 'rate-limit'
@@ -92,6 +93,9 @@
   let doc = $state('');
   let phone = $state('');
   let company = $state('');
+  // Payment method for the selected currency; the first entry is the default
+  // (Pix on BRL, USDT through BTCPay on USD, card through Payrexx second).
+  let method = $state<PaymentMethod>(untrack(() => PAYMENT_METHODS[currencyForLocale(locale)][0]));
   let website = $state(''); // honeypot
   let altchaPayload = $state<string | null>(null);
   let altchaWidget: AltchaWidget | undefined = $state();
@@ -138,13 +142,19 @@
     step === 3
       ? tr('done.title')
       : step === 2
-        ? tier === 'free'
-          ? tr('details.freeTitle')
-          : tr('details.title')
+        ? tr('details.title')
         : audience === 'team'
           ? tr('teamTitle')
           : tr('title')
   );
+
+  const methods = $derived(PAYMENT_METHODS[currency]);
+  const methodText = (m: PaymentMethod) =>
+    m === 'pix'
+      ? tr('details.methodPix')
+      : m === 'usdt'
+        ? tr('details.methodUsdt')
+        : tr('details.methodCard');
 
   const altchaLabels = $derived({
     idle: t(locale, 'altcha.idle'),
@@ -154,12 +164,7 @@
   });
 
   const commerceBase = getCommerceBaseUrl();
-  const commsBase = getCommsBaseUrl();
-  const challengeUrl = $derived(
-    tier === 'free'
-      ? `${commsBase}/api/altcha-challenge`
-      : `${commerceBase}/api/public/altcha-challenge`
-  );
+  const challengeUrl = `${commerceBase}/api/public/altcha-challenge`;
 
   // Scroll lock, focus and the open event. Cleanup restores the page and the
   // element that opened the modal.
@@ -292,6 +297,12 @@
       audience,
       seats: next === 'team' ? seats : 1
     });
+    // Free is not a checkout: reading happens in the logged-in area, and the
+    // Google sign-in there is the whole signup (ADR-0014, ADR-0007 baseline grant).
+    if (next === 'free') {
+      window.location.assign(BRIEFING_HUB_URL);
+      return;
+    }
     goToStep(2);
   }
 
@@ -324,10 +335,8 @@
   function validate(): Problem {
     if (name.trim().length < 2) return 'invalid-name';
     if (!emailRE.test(email.trim())) return 'invalid-email';
-    if (tier !== 'free') {
-      if (isBRL && ![11, 14].includes(digits(doc).length)) return 'invalid-doc';
-      if (!normalizedPhone) return 'invalid-phone';
-    }
+    if (isBRL && ![11, 14].includes(digits(doc).length)) return 'invalid-doc';
+    if (!normalizedPhone) return 'invalid-phone';
     const payload = altchaWidget?.getValue() ?? altchaPayload;
     if (!payload) return 'anti-abuse';
     return null;
@@ -349,18 +358,13 @@
     }
 
     const payload = altchaWidget?.getValue() ?? altchaPayload ?? '';
-    const offer = tier === 'free' ? 'free' : (selectedPlan?.id ?? tier);
+    const offer = selectedPlan?.id ?? tier;
     status = 'submitting';
-    trackEvent(FORM_SUBMIT, { source, offer });
+    trackEvent(FORM_SUBMIT, { source, offer, method });
 
     try {
-      if (tier === 'free') {
-        await submitFree(payload);
-        outcome = 'free';
-      } else {
-        outcome = await submitPaid(payload);
-      }
-      trackEvent(FORM_SUCCESS, { source, offer });
+      outcome = await submitPaid(payload);
+      trackEvent(FORM_SUCCESS, { source, offer, method });
       if (outcome === 'paid-redirect') {
         status = 'redirecting';
         step = 3;
@@ -384,30 +388,6 @@
     }
   }
 
-  async function submitFree(altcha: string) {
-    const res = await fetch(`${commsBase}/api/contact`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name,
-        email,
-        message:
-          locale === 'pt-BR'
-            ? 'Acesso gratuito ao Briefing BTC (consulta na área logada).'
-            : 'Free access to the Briefing BTC logged-in area.',
-        whatsapp_opt_in: false,
-        altcha,
-        website,
-        source: 'briefing-btc-free',
-        language: t(locale, 'common.languageCode')
-      })
-    });
-    if (res.status === 403) throw new CheckoutError('anti-abuse');
-    if (res.status === 429) throw new CheckoutError('rate-limit');
-    if (res.status === 400) throw new CheckoutError('invalid-fields');
-    if (!res.ok) throw new CheckoutError('error');
-  }
-
   async function submitPaid(altcha: string): Promise<Outcome> {
     const plan = selectedPlan;
     if (!plan) throw new CheckoutError('error');
@@ -416,6 +396,7 @@
       customer_name: name,
       customer_email: email,
       customer_phone: normalizedPhone,
+      payment_method: method,
       altcha,
       website,
       source,
@@ -477,18 +458,10 @@
       ? tr('done.paidRedirect')
       : outcome === 'paid-no-url'
         ? tr('done.paidNoUrl')
-        : outcome === 'free'
-          ? tr('done.free')
-          : ''
+        : ''
   );
 
-  const submitLabel = $derived(
-    tier === 'free'
-      ? tr('details.submitFree')
-      : isBRL
-        ? tr('details.submitPay')
-        : tr('details.submitRequestLink')
-  );
+  const submitLabel = $derived(tr('details.submitPay'));
 </script>
 
 <svelte:window onkeydown={onKeydown} onpageshow={onPageShow} />
@@ -590,7 +563,6 @@
           {#if audience === 'individual'}
             <div class="cards">
               <article class="card" aria-labelledby="bsm-free-name">
-                <span class="badge neutral">{tr('free.badge')}</span>
                 <div class="card-head">
                   <h3 id="bsm-free-name">{tr('free.name')}</h3>
                   <p class="tagline">{tr('free.tagline')}</p>
@@ -832,42 +804,40 @@
                 </div>
               </div>
 
-              {#if tier !== 'free'}
-                <div class="row">
-                  {#if isBRL}
-                    <div class="field">
-                      <label for="bsm-doc">{tr('details.doc')} *</label>
-                      <input
-                        id="bsm-doc"
-                        type="text"
-                        required
-                        inputmode="numeric"
-                        autocomplete="off"
-                        bind:value={doc}
-                      />
-                      <span class="hint">{tr('details.docHint')}</span>
-                    </div>
-                  {/if}
+              <div class="row">
+                {#if isBRL}
                   <div class="field">
-                    <label for="bsm-phone">{tr('details.phone')} *</label>
+                    <label for="bsm-doc">{tr('details.doc')} *</label>
                     <input
-                      id="bsm-phone"
-                      type="tel"
+                      id="bsm-doc"
+                      type="text"
                       required
-                      autocomplete="tel"
-                      placeholder={tr('details.phonePlaceholder')}
-                      bind:value={phone}
+                      inputmode="numeric"
+                      autocomplete="off"
+                      bind:value={doc}
                     />
-                    <span class="hint">
-                      {#if phoneDisplay}
-                        {fill(tr('details.phoneNormalized'), { phone: phoneDisplay })}
-                      {:else}
-                        {tr('details.phoneHint')}
-                      {/if}
-                    </span>
+                    <span class="hint">{tr('details.docHint')}</span>
                   </div>
+                {/if}
+                <div class="field">
+                  <label for="bsm-phone">{tr('details.phone')} *</label>
+                  <input
+                    id="bsm-phone"
+                    type="tel"
+                    required
+                    autocomplete="tel"
+                    placeholder={tr('details.phonePlaceholder')}
+                    bind:value={phone}
+                  />
+                  <span class="hint">
+                    {#if phoneDisplay}
+                      {fill(tr('details.phoneNormalized'), { phone: phoneDisplay })}
+                    {:else}
+                      {tr('details.phoneHint')}
+                    {/if}
+                  </span>
                 </div>
-              {/if}
+              </div>
 
               {#if tier === 'team'}
                 <div class="row">
@@ -886,6 +856,18 @@
                   </div>
                 </div>
               {/if}
+
+              {#if methods.length > 1}
+                <fieldset class="methods">
+                  <legend>{tr('details.methodLabel')}</legend>
+                  {#each methods as m (m)}
+                    <label class="method" class:active={method === m}>
+                      <input type="radio" name="bsm-method" value={m} bind:group={method} />
+                      <span>{methodText(m)}</span>
+                    </label>
+                  {/each}
+                </fieldset>
+              {/if}
             </fieldset>
 
             <aside class="summary" aria-label={tr('details.summary')}>
@@ -893,13 +875,7 @@
               <dl>
                 <div>
                   <dt>{tr('details.plan')}</dt>
-                  <dd>
-                    {tier === 'free'
-                      ? tr('free.name')
-                      : tier === 'team'
-                        ? tr('team.name')
-                        : tr('pro.name')}
-                  </dd>
+                  <dd>{tier === 'team' ? tr('team.name') : tr('pro.name')}</dd>
                 </div>
                 {#if selectedPlan}
                   <div>
@@ -918,7 +894,7 @@
                   {/if}
                   <div>
                     <dt>{tr('details.method')}</dt>
-                    <dd>{isBRL ? tr('details.methodPix') : tr('details.methodCard')}</dd>
+                    <dd>{methodText(method)}</dd>
                   </div>
                   {#if phoneDisplay}
                     <div>
@@ -1275,11 +1251,6 @@
     background: linear-gradient(180deg, rgba(0, 255, 255, 0.05), transparent 40%), var(--bg-2);
   }
 
-  .badge.neutral {
-    border-color: var(--border-strong);
-    color: var(--fg-2);
-  }
-
   .foot {
     display: flex;
     flex-wrap: wrap;
@@ -1617,6 +1588,56 @@
     flex-direction: column;
     gap: var(--s-2);
     min-width: 0;
+  }
+
+  .methods {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    border: none;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+
+  .methods legend {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--track-label);
+    color: var(--cyan-muted);
+    font-weight: 500;
+    padding: 0;
+    margin-bottom: var(--s-2);
+  }
+
+  .method {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    min-height: 2.75rem;
+    padding: var(--s-2) var(--s-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--fg-1);
+    cursor: pointer;
+    transition:
+      border-color var(--dur) var(--ease),
+      color var(--dur) var(--ease);
+  }
+
+  .method.active {
+    border-color: var(--cyan-dim);
+    color: var(--fg-0);
+    background: var(--cyan-subtle);
+  }
+
+  .method input {
+    accent-color: var(--cyan-brand);
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
   }
 
   .field .opt {

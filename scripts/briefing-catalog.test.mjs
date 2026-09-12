@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 
 import {
   ANNUAL_DISCOUNT_PCT,
+  BRIEFING_HUB_URL,
+  PAYMENT_METHODS,
   MONTHLY_DISCOUNT_PCT,
   PAID_PLANS,
   TEAM_MAX_SEATS,
@@ -79,7 +81,13 @@ test('locale decides the currency and the payment method', () => {
   assert.equal(currencyForLocale('pt-BR'), 'BRL');
   assert.equal(currencyForLocale('en'), 'USD');
   assert.equal(findPlan('individual', 'annual', 'BRL').method, 'pix');
-  assert.equal(findPlan('individual', 'annual', 'USD').method, 'card');
+  assert.equal(
+    findPlan('individual', 'annual', 'USD').method,
+    'usdt',
+    'USDT via BTCPay is the USD default'
+  );
+  assert.deepEqual(PAYMENT_METHODS, { BRL: ['pix'], USD: ['usdt', 'card'] });
+  assert.equal(BRIEFING_HUB_URL, 'https://app.merovelis.com/briefing-btc');
 });
 
 test('amounts format per locale, dropping decimals only on whole values', () => {

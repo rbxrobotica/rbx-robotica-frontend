@@ -26,8 +26,24 @@
  * @property {number} amount        charged per unit and cycle (per seat on team plans)
  * @property {number} listAmount    undiscounted reference price per unit and cycle
  * @property {number} discountPct   published discount against listAmount
- * @property {'pix' | 'card'} method
+ * @property {PaymentMethod} method   default method for the plan's currency
  */
+
+/**
+ * Canonical authenticated entrypoint for the product (rbx-governance
+ * ADR-0014): the Free tier reads the briefing here after a Google sign-in.
+ */
+export const BRIEFING_HUB_URL = 'https://app.merovelis.com/briefing-btc';
+
+/** @typedef {'pix' | 'usdt' | 'card'} PaymentMethod */
+
+/**
+ * Payment methods a currency can be paid with, first entry is the default.
+ * BRL: Pix through Asaas. USD: USDT through the RBX BTCPay Server (owner
+ * preference) or card through Payrexx.
+ * @type {Record<Currency, PaymentMethod[]>}
+ */
+export const PAYMENT_METHODS = { BRL: ['pix'], USD: ['usdt', 'card'] };
 
 /** Team plans sell this many seats on one invoice. Mirrors the server bounds. */
 export const TEAM_MIN_SEATS = 2;
@@ -81,7 +97,7 @@ for (const audience of /** @type {Audience[]} */ (['individual', 'team'])) {
         audience,
         billing,
         currency,
-        method: currency === 'BRL' ? 'pix' : 'card',
+        method: PAYMENT_METHODS[currency][0],
         ...priceFor(currency, billing)
       });
     }

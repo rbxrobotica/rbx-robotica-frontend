@@ -222,14 +222,13 @@
       },
       "free": {
         "name": "Free",
-        "badge": "Coming soon",
-        "tagline": "Read it in the logged-in area, once it opens.",
-        "cta": "Join the list",
+        "tagline": "Read it in the logged-in area.",
+        "cta": "Sign in with Google",
         "priceNote": "no charge",
         "features": [
           "Read the day's briefing in the logged-in area",
-          "Edition history for review",
-          "Email notice when the free area opens"
+          "Last 7 days of editions",
+          "Access with your Google account, no sign-up form"
         ]
       },
       "pro": {
@@ -241,12 +240,12 @@
         "perMonth": "/mo",
         "billedMonthly": "billed monthly",
         "billedAnnually": "{total} billed annually",
-        "everythingInFree": "What you get:",
+        "everythingInFree": "Everything in Free, plus:",
         "features": [
           "WhatsApp delivery every business day, by 07h00 Brasília time",
-          "Operational read of BTC/USDT futures: price, RSI, moving averages, bands, funding and open interest",
-          "Hypothesis of the day and conditions not to trade",
-          "Written in Brazilian Portuguese",
+          "The six auditable artifacts of each edition in the logged-in area: flight-plan, snapshot, model-output, manifest, sources, execution-log",
+          "Full edition history",
+          "Operational read: price, RSI, moving averages, bands, funding, open interest and the hypothesis of the day",
           "Cancel any time"
         ]
       },
@@ -272,7 +271,6 @@
       },
       "details": {
         "title": "Your details",
-        "freeTitle": "Free access",
         "name": "Full name",
         "email": "Email",
         "doc": "CPF or CNPJ",
@@ -289,12 +287,11 @@
         "seats": "Seats",
         "method": "Payment",
         "methodPix": "Pix, via Asaas",
-        "methodCard": "Card, link sent by email",
+        "methodCard": "Card, via Payrexx",
         "cycleMonthly": "Monthly",
         "cycleAnnual": "Annual",
         "submitPay": "Go to payment",
-        "submitRequestLink": "Request payment link",
-        "submitFree": "Create free access",
+        "submitRequestLink": "Go to payment",
         "submitting": "Sending...",
         "back": "Back",
         "invalidDoc": "Enter a CPF (11 digits) or CNPJ (14 digits).",
@@ -305,13 +302,14 @@
         "invalidFields": "Check the fields and try again.",
         "providerFailed": "The payment provider did not accept the request. Try again or talk to the team.",
         "invalidEmail": "Enter a valid email address.",
-        "invalidName": "Enter your full name."
+        "invalidName": "Enter your full name.",
+        "methodUsdt": "USDT, via BTCPay Server",
+        "methodLabel": "Payment method"
       },
       "done": {
         "title": "Confirmation",
         "paidRedirect": "Subscription recorded. Redirecting to payment.",
         "paidNoUrl": "Subscription recorded. The payment link arrives by email within one business day.",
-        "free": "Registration received. You get an email when the free area opens.",
         "duplicate": "This contact already holds an active Briefing BTC subscription. To change plans, talk to the team.",
         "rateLimit": "Too many attempts from this connection. Try again in one hour.",
         "error": "Could not complete. Check the fields and try again.",
@@ -321,9 +319,9 @@
       "summary": {
         "eyebrow": "Subscription",
         "title": "Free or Pro",
-        "body": "Free: read it in the logged-in area, coming soon. Pro: WhatsApp delivery every business day, by 07h00.",
+        "body": "Free: read it in the logged-in area with your Google account. Pro: WhatsApp delivery every business day by 07h00, plus the six artifacts of each edition.",
         "freeLabel": "Free",
-        "freeNote": "coming soon",
+        "freeNote": "logged-in area",
         "proLabel": "Pro",
         "from": "from",
         "perMonth": "/mo",
