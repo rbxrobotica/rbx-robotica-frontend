@@ -26,7 +26,12 @@ export type EventName =
   | 'form_success'
   | 'form_error'
   | 'whatsapp_click'
-  | 'chat_open';
+  | 'chat_open'
+  | 'subscribe_open'
+  | 'subscribe_step'
+  | 'plan_select'
+  | 'billing_toggle'
+  | 'audience_toggle';
 
 export interface EventProps {
   [key: string]: string | number | boolean;

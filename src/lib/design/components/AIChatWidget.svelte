@@ -159,8 +159,11 @@
 
     {#if showBriefingCta && !loading}
       <div class="cta-row">
-        <!-- Subscription checkout lives on the landing page, not in the contact funnel. -->
-        <a href="/briefing-btc" class="cta-btn primary" onclick={onclose}>{ctaBriefing}</a>
+        <!-- Subscription lives on the landing page, not in the contact funnel;
+             ?subscribe=1 opens the plan modal on arrival. -->
+        <a href="/briefing-btc?subscribe=1" class="cta-btn primary" onclick={onclose}
+          >{ctaBriefing}</a
+        >
       </div>
     {:else if showCta && !loading}
       <div class="cta-row">

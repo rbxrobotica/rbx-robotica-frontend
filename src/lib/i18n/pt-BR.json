@@ -197,6 +197,141 @@
   },
   "briefing": {
     "headline": "Briefing Diário BTC",
-    "body": "Leitura operacional diária do mercado BTC Futuros. Às 07h todo dia útil. Não são sinais. Não é recomendação."
+    "body": "Leitura operacional diária do mercado BTC Futuros. Às 07h todo dia útil. Não são sinais. Não é recomendação.",
+    "subscribe": {
+      "eyebrow": "Briefing Diário BTC · Assinatura",
+      "title": "Escolha seu plano",
+      "teamTitle": "Configure sua equipe",
+      "close": "Fechar assinatura",
+      "steps": ["Plano", "Dados", "Confirmação"],
+      "stepLabel": "Etapa",
+      "audience": {
+        "label": "Para quem",
+        "individual": "Individual",
+        "team": "Equipe",
+        "teamHint": "Assinando para mais pessoas?",
+        "teamLink": "Plano para equipes",
+        "backToIndividual": "Voltar ao plano individual"
+      },
+      "billing": {
+        "label": "Cobrança",
+        "monthly": "Mensal",
+        "annual": "Anual",
+        "monthlyBadge": "40% de desconto",
+        "annualBadge": "50% de desconto"
+      },
+      "free": {
+        "name": "Free",
+        "tagline": "Consulta na área logada.",
+        "cta": "Entrar com Google",
+        "priceNote": "sem cobrança",
+        "features": [
+          "Leitura do briefing do dia na área logada",
+          "Histórico dos últimos 7 dias",
+          "Acesso com a sua conta Google, sem cadastro"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "badge": "Melhor valor",
+        "tagline": "Recebido no seu WhatsApp todo dia útil.",
+        "cta": "Assinar Pro",
+        "listLabel": "Preço de tabela",
+        "perMonth": "/mês",
+        "billedMonthly": "cobrado mensalmente",
+        "billedAnnually": "{total} cobrados anualmente",
+        "everythingInFree": "Tudo do Free, mais:",
+        "features": [
+          "Entrega no WhatsApp todo dia útil, até as 07h de Brasília",
+          "Os seis artefatos auditáveis de cada edição na área logada: flight-plan, snapshot, model-output, manifest, sources, execution-log",
+          "Histórico completo de edições",
+          "Leitura operacional: preço, RSI, médias, bandas, funding, open interest e hipótese do dia",
+          "Cancele quando quiser"
+        ]
+      },
+      "team": {
+        "name": "Equipe",
+        "tagline": "Pro para cada assento, uma fatura.",
+        "seatsLabel": "Assentos",
+        "seatsHint": "De {min} a {max} assentos",
+        "decrease": "Um assento a menos",
+        "increase": "Um assento a mais",
+        "perSeat": "por assento",
+        "total": "Total",
+        "cta": "Continuar",
+        "everythingInPro": "O que a equipe recebe:",
+        "features": [
+          "O Pro em cada assento, uma fatura para a equipe",
+          "Cada assento recebe no próprio WhatsApp; os números são cadastrados pela RBX após o pagamento",
+          "Trocas de assento por e-mail com o time"
+        ],
+        "moreSeats": "Mais de {max} assentos? Fale com o time pelo formulário de contato.",
+        "billedAnnually": "cobrados anualmente",
+        "billedMonthly": "cobrado mensalmente"
+      },
+      "details": {
+        "title": "Seus dados",
+        "name": "Nome completo",
+        "email": "E-mail",
+        "doc": "CPF ou CNPJ",
+        "docHint": "Necessário para a cobrança via Pix",
+        "phone": "WhatsApp",
+        "phoneHint": "Número que recebe o briefing",
+        "phonePlaceholder": "+55 11 91234-5678",
+        "company": "Empresa",
+        "optional": "opcional",
+        "adminHint": "Você recebe a fatura. Os WhatsApp dos assentos são cadastrados após o pagamento.",
+        "summary": "Resumo",
+        "plan": "Plano",
+        "cycle": "Cobrança",
+        "seats": "Assentos",
+        "method": "Pagamento",
+        "methodPix": "Pix, via Asaas",
+        "methodCard": "Cartão, via Payrexx",
+        "cycleMonthly": "Mensal",
+        "cycleAnnual": "Anual",
+        "submitPay": "Ir para pagamento",
+        "submitRequestLink": "Ir para pagamento",
+        "submitting": "Enviando...",
+        "back": "Voltar",
+        "invalidDoc": "Informe um CPF (11 dígitos) ou CNPJ (14 dígitos).",
+        "invalidPhone": "Informe um número de WhatsApp com DDI e DDD.",
+        "antiAbuse": "Confirme a verificação anti-robô antes de continuar.",
+        "legal": "Sem sinais de compra ou venda. Sem promessa de retorno. Cancele quando quiser.",
+        "phoneNormalized": "Entrega em {phone}",
+        "invalidFields": "Verifique os campos e tente novamente.",
+        "providerFailed": "O provedor de pagamento não aceitou o pedido. Tente novamente ou fale com o time.",
+        "invalidEmail": "Informe um e-mail válido.",
+        "invalidName": "Informe seu nome completo.",
+        "methodUsdt": "USDT, via BTCPay Server",
+        "methodLabel": "Forma de pagamento"
+      },
+      "done": {
+        "title": "Confirmação",
+        "paidRedirect": "Assinatura registrada. Redirecionando para o pagamento.",
+        "paidNoUrl": "Assinatura registrada. O link de pagamento chega por e-mail em até um dia útil.",
+        "duplicate": "Este contato já tem uma assinatura ativa do Briefing BTC. Para alterar o plano, fale com o time.",
+        "rateLimit": "Muitas tentativas a partir desta conexão. Tente novamente em uma hora.",
+        "error": "Não foi possível concluir. Verifique os campos e tente novamente.",
+        "retry": "Tentar novamente",
+        "close": "Fechar"
+      },
+      "summary": {
+        "eyebrow": "Assinatura",
+        "title": "Free ou Pro",
+        "body": "Free: consulta na área logada com sua conta Google. Pro: entrega no WhatsApp todo dia útil, até as 07h, e os seis artefatos de cada edição.",
+        "freeLabel": "Free",
+        "freeNote": "área logada",
+        "proLabel": "Pro",
+        "from": "a partir de",
+        "perMonth": "/mês",
+        "cta": "Ver planos e assinar"
+      },
+      "footer": {
+        "note": "Leitura operacional. Não são sinais, recomendação ou promessa de resultado.",
+        "governance": "Assinatura gerida pela RBX Systems. Cancelamento e reembolso:",
+        "legal": "Aviso Legal"
+      }
+    }
   }
 }

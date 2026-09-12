@@ -197,6 +197,141 @@
   },
   "briefing": {
     "headline": "Daily BTC Briefing",
-    "body": "Daily operational reading of BTC futures. By 07h00 every business day. Not signals. Not advice."
+    "body": "Daily operational reading of BTC futures. By 07h00 every business day. Not signals. Not advice.",
+    "subscribe": {
+      "eyebrow": "Daily BTC Briefing · Subscription",
+      "title": "Choose your plan",
+      "teamTitle": "Set up your team",
+      "close": "Close subscription",
+      "steps": ["Plan", "Details", "Confirmation"],
+      "stepLabel": "Step",
+      "audience": {
+        "label": "Who it is for",
+        "individual": "Individual",
+        "team": "Team",
+        "teamHint": "Subscribing for more people?",
+        "teamLink": "Team plan",
+        "backToIndividual": "Back to the individual plan"
+      },
+      "billing": {
+        "label": "Billing",
+        "monthly": "Monthly",
+        "annual": "Annual",
+        "monthlyBadge": "40% off",
+        "annualBadge": "50% off"
+      },
+      "free": {
+        "name": "Free",
+        "tagline": "Read it in the logged-in area.",
+        "cta": "Sign in with Google",
+        "priceNote": "no charge",
+        "features": [
+          "Read the day's briefing in the logged-in area",
+          "Last 7 days of editions",
+          "Access with your Google account, no sign-up form"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "badge": "Best value",
+        "tagline": "Delivered to your WhatsApp every business day.",
+        "cta": "Subscribe to Pro",
+        "listLabel": "List price",
+        "perMonth": "/mo",
+        "billedMonthly": "billed monthly",
+        "billedAnnually": "{total} billed annually",
+        "everythingInFree": "Everything in Free, plus:",
+        "features": [
+          "WhatsApp delivery every business day, by 07h00 Brasília time",
+          "The six auditable artifacts of each edition in the logged-in area: flight-plan, snapshot, model-output, manifest, sources, execution-log",
+          "Full edition history",
+          "Operational read: price, RSI, moving averages, bands, funding, open interest and the hypothesis of the day",
+          "Cancel any time"
+        ]
+      },
+      "team": {
+        "name": "Team",
+        "tagline": "Pro for every seat, one invoice.",
+        "seatsLabel": "Seats",
+        "seatsHint": "{min} to {max} seats",
+        "decrease": "One seat fewer",
+        "increase": "One seat more",
+        "perSeat": "per seat",
+        "total": "Total",
+        "cta": "Continue",
+        "everythingInPro": "What the team gets:",
+        "features": [
+          "Pro on every seat, one invoice for the team",
+          "Each seat receives on its own WhatsApp; RBX registers the numbers after payment",
+          "Seat changes by email with the team"
+        ],
+        "moreSeats": "More than {max} seats? Talk to the team through the contact form.",
+        "billedAnnually": "billed annually",
+        "billedMonthly": "billed monthly"
+      },
+      "details": {
+        "title": "Your details",
+        "name": "Full name",
+        "email": "Email",
+        "doc": "CPF or CNPJ",
+        "docHint": "Required for Pix billing",
+        "phone": "WhatsApp",
+        "phoneHint": "The number that receives the briefing",
+        "phonePlaceholder": "+41 79 000 00 00",
+        "company": "Company",
+        "optional": "optional",
+        "adminHint": "You receive the invoice. Seat WhatsApp numbers are registered after payment.",
+        "summary": "Summary",
+        "plan": "Plan",
+        "cycle": "Billing",
+        "seats": "Seats",
+        "method": "Payment",
+        "methodPix": "Pix, via Asaas",
+        "methodCard": "Card, via Payrexx",
+        "cycleMonthly": "Monthly",
+        "cycleAnnual": "Annual",
+        "submitPay": "Go to payment",
+        "submitRequestLink": "Go to payment",
+        "submitting": "Sending...",
+        "back": "Back",
+        "invalidDoc": "Enter a CPF (11 digits) or CNPJ (14 digits).",
+        "invalidPhone": "Enter a WhatsApp number with country and area code.",
+        "antiAbuse": "Complete the anti-robot check before continuing.",
+        "legal": "No buy or sell signals. No promise of returns. Cancel any time.",
+        "phoneNormalized": "Delivery to {phone}",
+        "invalidFields": "Check the fields and try again.",
+        "providerFailed": "The payment provider did not accept the request. Try again or talk to the team.",
+        "invalidEmail": "Enter a valid email address.",
+        "invalidName": "Enter your full name.",
+        "methodUsdt": "USDT, via BTCPay Server",
+        "methodLabel": "Payment method"
+      },
+      "done": {
+        "title": "Confirmation",
+        "paidRedirect": "Subscription recorded. Redirecting to payment.",
+        "paidNoUrl": "Subscription recorded. The payment link arrives by email within one business day.",
+        "duplicate": "This contact already holds an active Briefing BTC subscription. To change plans, talk to the team.",
+        "rateLimit": "Too many attempts from this connection. Try again in one hour.",
+        "error": "Could not complete. Check the fields and try again.",
+        "retry": "Try again",
+        "close": "Close"
+      },
+      "summary": {
+        "eyebrow": "Subscription",
+        "title": "Free or Pro",
+        "body": "Free: read it in the logged-in area with your Google account. Pro: WhatsApp delivery every business day by 07h00, plus the six artifacts of each edition.",
+        "freeLabel": "Free",
+        "freeNote": "logged-in area",
+        "proLabel": "Pro",
+        "from": "from",
+        "perMonth": "/mo",
+        "cta": "See plans and subscribe"
+      },
+      "footer": {
+        "note": "Operational reading. Not signals, advice or a promise of results.",
+        "governance": "Subscription managed by RBX Systems. Cancellation and refunds:",
+        "legal": "Legal Notice"
+      }
+    }
   }
 }

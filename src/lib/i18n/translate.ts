@@ -25,3 +25,12 @@ export function t(localeOrDictionary: Locale | Record<string, unknown>, key: str
       : lookup(localeOrDictionary, key);
   return typeof value === 'string' ? value : key;
 }
+
+/**
+ * Read a list of strings from a dictionary (feature lists on plan cards).
+ * Returns an empty list when the key is missing or not a list of strings.
+ */
+export function tl(locale: Locale, key: string): string[] {
+  const value = lookup(messages[locale], key);
+  return Array.isArray(value) ? value.filter((v): v is string => typeof v === 'string') : [];
+}
